@@ -1,4 +1,4 @@
-import { useState }  from 'react'
+import { useState } from 'react'
 import { useForm } from '../../hooks/useForm';
 import { useUser } from "../../hooks/useUser";
 import { fetchCall } from "../../utils/fetchCall";
@@ -32,19 +32,20 @@ export const SignupForm = () => {
 
       // Redirigir según el role
       // *******IMPORTANTE: CAMBIAR URL POR LA VÁLIDA Y ROLES*******
-      if (data.user.role === "admin") {
+      /* if (data.user.role === "admin") {
         navigate("/admin-dashboard");
       } else if (data.user.role === 'client') {
         navigate("/client-dashboard");
       } else if (data.user.role === 'technician') {
         navigate('/technician-dashboard')
-      }
+      } */
+      navigate('/register')
     } catch (err) {
       setError(err.message || "Error al registrarse");
     }
   };
 
-  
+
   return (
     <section className="container d-flex flex-column align-items-center justify-content-center my-5 border border-1 rounded-3 py-4 px-4">
 
@@ -57,7 +58,7 @@ export const SignupForm = () => {
             id="registerName"
             placeholder="Ingresa tu nombre"
             name="name"
-            value={ formData.name }
+            value={formData.name}
             onChange={handleChange}
           />
         </div>
@@ -70,7 +71,7 @@ export const SignupForm = () => {
             id="registerEmail"
             placeholder="Ingresa un email"
             name="email"
-            value={ formData.email }
+            value={formData.email}
             onChange={handleChange}
           />
         </div>
@@ -83,13 +84,38 @@ export const SignupForm = () => {
             id="registerPassword"
             placeholder="Ingresa una contraseña"
             name="password"
-            value={ formData.password } 
+            value={formData.password}
             onChange={handleChange}
           />
         </div>
 
+        <div className="mb-3">
+          <label htmlFor="registerRole" className="fw-bold form-label">Rol</label>
+          <input
+            type="text"
+            className="form-control"
+            id="registerRole"
+            placeholder="Ingresa un rol"
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+          />
+        </div>
+
+        {/* TODO: Hacer fetch para obtener los clientes */}
+        {/* {formData.role === 'cliente' && (
+          <select name="id_cliente" onChange={handleChange}>
+            <option value="">Selecciona un cliente</option>
+            {clientes.map((cliente) => (
+              <option key={cliente.id_cliente} value={cliente.id_cliente}>
+                {cliente.nombre}
+              </option>
+            ))}
+          </select>
+        )} */}
+
         <button type="submit" className="btn btn-dark w-100 mt-4 mb-2"> Registrarse </button>
-         {error && <p className="text-danger">{error.message}</p>}
+        {error && <p className="text-danger">{error.message}</p>}
       </form>
     </section>
   )

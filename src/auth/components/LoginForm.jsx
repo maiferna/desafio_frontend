@@ -101,23 +101,26 @@ import { useNavigate } from "react-router";
     e.preventDefault();
     setError(null); // Limpia errores anteriores
     const formToSend = serializeForm();
+    console.log('FORM TO SEND', formToSend)
     
     try {
       // *******IMPORTANTE: CAMBIAR URL POR LA VÁLIDA*******
-      const data = await fetchCall(`${urlBase}auth/login`, "POST", {}, formToSend);
+      const data = await fetchCall(`${urlBase}auth`, "POST", {}, formToSend);
 
       // Al hacer login, guardamos en el contexto global
       login(data.user, data.token);
 
       // Redirigir según el role
       // *******IMPORTANTE: CAMBIAR URL POR LA VÁLIDA Y ROLES*******
-      if (data.user.role === "admin") {
+      /* if (data.user.role === "admin") {
         navigate("/admin-dashboard");
       } else if (data.user.role === 'client') {
         navigate("/client-dashboard");
       } else if (data.user.role === 'technician') {
         navigate('/technician-dashboard')
-      }
+      } */
+     console.log('USUARIO LOGUEADO')
+     navigate('/login')
 
     } catch (err) {
       setError(err.message || "Error en el login");
