@@ -15,7 +15,7 @@ export const ContactForm = () => {
 
       <form className='w-100 my-4 pb-5 px-4'>{/* onSubmit={handleSubmit} */}
         <div className="mb-3">
-          <label htmlFor="contactEmail" className="fw-bold form-label">Email</label>
+          <label htmlFor="contactEmail" className="fw-bold form-label">*Email</label>
           <input
             type="email"
             className="form-control rounded-0"
@@ -28,7 +28,7 @@ export const ContactForm = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="contactName" className="fw-bold form-label">Nombre</label>
+          <label htmlFor="contactName" className="fw-bold form-label">*Nombre</label>
           <input
             type="text"
             className="form-control rounded-0"
@@ -41,13 +41,13 @@ export const ContactForm = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="contactMessage" className="fw-bold form-label">Mensaje</label>
+          <label htmlFor="contactMessage" className="fw-bold form-label">*Mensaje</label>
           <textarea
             type="message"
             className="form-control rounded-0"
             id="contactMessage"
             name="message"
-            placeholder="Cuéntanos tu problema"
+            placeholder="En qué podemos ayudarle"
             // value={}
             // onChange={handleChange}
           />

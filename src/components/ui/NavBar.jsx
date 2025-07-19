@@ -45,10 +45,10 @@ export const NavBar = () => {
             {/* {user?.role === "admin" && ( */}
                 <>
                 <li><NavLink to="/admin" className="nav-link">Panel de Administrador</NavLink></li>
-                <li><NavLink to="/admin/planner" className="nav-link">Gestonar Operarios</NavLink></li>
+                <li><NavLink to="/admin/planner" className="nav-link">Planner</NavLink></li>
                 <li><NavLink to="/admin/register-client" className="nav-link">Registrar Cliente</NavLink></li>
-                <li><NavLink to="/admin/manage-workers" className="nav-link">Gestonar Operarios</NavLink></li>
-                <li><NavLink to="/admin/manage-clients" className="nav-link">Gestonar Clientes</NavLink></li>
+                <li><NavLink to="/admin/manage-workers" className="nav-link">Gestionar Operarios</NavLink></li>
+                <li><NavLink to="/admin/manage-clients" className="nav-link">Gestionar Clientes</NavLink></li>
                 </>
             {/* )} */}
 
