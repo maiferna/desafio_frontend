@@ -1,63 +1,76 @@
+
 import { createContext, useContext, useState, useEffect } from "react";
-// import {
-//   saveUserToLocalStorage,
-//   getUserFromLocalStorage,
-//   clearUserFromLocalStorage,
-// } from "../utils/localStorage";
+import { fetchCall } from "../utils/fetchCall";
 
 // CREAR CONTEXTO
 export const UserContext = createContext();
 
 // PROVEEDOR DEL CONTEXTO
 export const UserProvider = ({ children }) => {
-//   const initialData = getUserFromLocalStorage();
 
-//   const [user, setUser] = useState(initialData?.user || null);
-//   const [token, setToken] = useState(initialData?.token || null);
-//   const [isLoading, setIsLoading] = useState(true); 
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('token') || null);
+  const [isLoading, setIsLoading] = useState(true); 
+  const urlBase = import.meta.env.VITE_API_URL_BASE;
 
-//    useEffect(() => {
-//     setUser(initialData?.user || null);
-//     setToken(initialData?.token || null);
-//     setIsLoading(false); //cuando carga localStorage, desactiva el loading
-//   }, []);
+  // Si hay token, fetchCall cargará el user al montar el componente
+  
+   useEffect(() => {
+    const authUser = async () => {
+        // Verificar que haya token para ejecutar el fetchCall
+        if (!token) {
+            setIsLoading(false);
+            return;
+        }
+        try {
+            // Obtener usuario si lo hay
+            // *******IMPORTANTE: CAMBIAR URL POR LA VÁLIDA*******
+            const data = await fetchCall(`${urlBase}auth/user`, "GET", {}, null, token);
+            console.log('DATA RECIBIDA DEL BACK', data)
+            setUser(data.user);
+        } catch (error) {
+            console.log('Error al cargar el usuario', error);
+            localStorage.removeItem("token");
+            setUser(null);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+    authUser();
+  }, []);
 
-// // Efecto para sincronizar con localStorage cada vez que cambia user o token
-//   useEffect(() => {
-//     if (user && token) {
-//       saveUserToLocalStorage({ user, token });
-//     } else {
-//       clearUserFromLocalStorage();
-//     }
-//   }, [user, token]);
+  // Función register: guarda el user en el estado y el token en el localStorage
+  const register = (userData, jwtToken) => {
+    try {
+      localStorage.setItem("token", jwtToken);
+      setToken(jwtToken);
+      setUser(userData);
+    } catch (error) {
+      throw error;
+    }
+  }
 
-//   // Función login: guarda user y token en el estado
-//   const login = (userData, jwtToken) => {
-//     setUser(userData);
-//     setToken(jwtToken);
-//   };
+  // Función login: guarda user en el estado y token en el localStorage
+  const login = (userData, jwtToken) => {
+    localStorage.setItem("token", jwtToken);
+    setToken(jwtToken);
+    setUser(userData);
+  };
 
-//   // Función logout: limpia todo
-//   const logout = () => {
-//     setUser(null);
-//     setToken(null);
-//     clearUserFromLocalStorage();
-//   };
+  // Función logout: elimina el token del localStorage
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken(null);
+    setUser(null);
+  };
 
-//   if (isLoading) return null; // evita renderizar mientras carga datos
+  if (isLoading) return null; // evita renderizar mientras carga datos
 
-//   return (
-//     <UserContext.Provider value={{ user, token, login, logout }}>
-//       {children}
-//     </UserContext.Provider>
-//   );
-// };
-
-// // Custom hook
-// export const useUser = () => {
-//   const context = useContext(UserContext);
-//   if (!context) {
-//     throw new Error("useUser debe usarse dentro de UserProvider");
-//   }
-//   return context;
+  return (
+    <UserContext.Provider value={{ user, token, login, register, logout }}>
+      {children}
+    </UserContext.Provider>
+  );
 };
+
+

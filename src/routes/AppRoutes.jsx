@@ -11,19 +11,8 @@ export const AppRoutes = () => {
       {/*<Route path='/' element={<MainLayout />}>*/}
 
         {/* Rutas públicas */}
-        <Route index element={<HomePage/>} />
         <Route path='/login' element={<LoginPage />} />
-
-        {/* Rutas admin */}
-        <Route element={<PrivateRoute allowedRoles={['admin']} />}>
-          <Route path='/admin-dashboard'>
-            <Route index element={<AdminDashboardPage />} />
-            <Route path='/signup' element={<SignupPage />} />
-          </Route>
-        </Route>
-
-        {/* Ruta por defecto: redirigir a Home si no encuentra nada */}
-        <Route path='/*' element={<Navigate to='/' />} />
+        <Route path='/register' element={<SignupPage />} />
 
       {/*</Route>*/}
     </Routes>

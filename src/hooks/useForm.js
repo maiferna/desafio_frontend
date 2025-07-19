@@ -7,15 +7,15 @@ export const useForm = (initialValue = {}) => {
         const { name, value } = event.target;
 
         setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
+            ...prevData,
+            [name]: value,
         }));
     };
 
     const resetInput = () => {
         const resetState = {};
         for (const key in formData) {
-        resetState[key] = "";
+            resetState[key] = "";
         }
         setFormData(resetState);
     };
@@ -23,15 +23,15 @@ export const useForm = (initialValue = {}) => {
     const serializeForm = () => {
         const serialized = {};
         for (const key in formData) {
-        const value = formData[key];
-        if (typeof value === 'string') {
-            const trimmed = value.trim();
-            if (trimmed) {
-            serialized[key] = trimmed;
+            const value = formData[key];
+            if (typeof value === 'string') {
+                const trimmed = value.trim();
+                if (trimmed) {
+                    serialized[key] = trimmed;
+                }
+            } else if (value !== undefined && value !== null) {
+                serialized[key] = value;
             }
-        } else if (value !== undefined && value !== null) {
-            serialized[key] = value;
-        }
         }
         return serialized;
     };

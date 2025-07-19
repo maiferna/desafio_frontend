@@ -12,9 +12,10 @@ export const SignupForm = () => {
     password: "",
   });
 
-  const { login } = useUser();
+  const { register } = useUser();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
+  const urlBase = import.meta.env.VITE_API_URL_BASE;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,36 +24,38 @@ export const SignupForm = () => {
     const formToSend = serializeForm();
 
     try {
-      const data = await fetchCall("http://localhost:5000/api/v1/auth/register", "POST", {}, formToSend);
+      // *******IMPORTANTE: CAMBIAR URL POR LA VÁLIDA*******
+      const data = await fetchCall(`${urlBase}auth/signup`, "POST", {}, formToSend);
 
       // Guardar en contexto global
-      login(data.user, data.token);
+      register(data.user, data.token);
 
-      // Redirigir según rol
+      // Redirigir según el role
+      // *******IMPORTANTE: CAMBIAR URL POR LA VÁLIDA Y ROLES*******
       if (data.user.role === "admin") {
         navigate("/admin-dashboard");
-      } else {
-        navigate("/user");
+      } else if (data.user.role === 'client') {
+        navigate("/client-dashboard");
+      } else if (data.user.role === 'technician') {
+        navigate('/technician-dashboard')
       }
     } catch (err) {
       setError(err.message || "Error al registrarse");
     }
   };
 
-
-
   
   return (
     <section className="container d-flex flex-column align-items-center justify-content-center my-5 border border-1 rounded-3 py-4 px-4">
 
-      <form className='w-100 my-3 px-4' onSubmit={handleSubmit}>
+      <form className='w-100 my-3 px-4' onSubmit={handleSubmit} noValidate>
         <div className="mb-3">
-          <label htmlFor="registerName" className="fw-bold form-label">*User Name</label>
+          <label htmlFor="registerName" className="fw-bold form-label">Nombre</label>
           <input
             type="text"
             className="form-control"
             id="registerName"
-            placeholder="Enter a username"
+            placeholder="Ingresa tu nombre"
             name="name"
             value={ formData.name }
             onChange={handleChange}
@@ -60,12 +63,12 @@ export const SignupForm = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="registerEmail" className="fw-bold form-label">*Email</label>
+          <label htmlFor="registerEmail" className="fw-bold form-label">Email</label>
           <input
             type="email"
             className="form-control"
             id="registerEmail"
-            placeholder="Enter a valid email"
+            placeholder="Ingresa un email"
             name="email"
             value={ formData.email }
             onChange={handleChange}
@@ -73,30 +76,21 @@ export const SignupForm = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="registerPassword" className="fw-bold form-label">*Password</label>
+          <label htmlFor="registerPassword" className="fw-bold form-label">Contraseña</label>
           <input
             type="password"
             className="form-control"
             id="registerPassword"
-            placeholder="Create a password"
+            placeholder="Ingresa una contraseña"
             name="password"
             value={ formData.password } 
             onChange={handleChange}
           />
         </div>
 
-        <button type="submit" className="btn btn-dark w-100 mt-4 mb-2"> Register </button>
-         {error && <p className="text-danger">{error.message || String(error)}</p>}
+        <button type="submit" className="btn btn-dark w-100 mt-4 mb-2"> Registrarse </button>
+         {error && <p className="text-danger">{error.message}</p>}
       </form>
-
-      <p>or</p>
-
-      <button className="btn btn-light w-100 d-flex align-items-center justify-content-center border rounded-pill px-4 py-2">
-        <span className='me-2'>Sign in with Google</span>
-        <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo" className="me-3" width="20" height="20"></img>
-      </button>
-     
-      
     </section>
   )
 }

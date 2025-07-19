@@ -6,8 +6,7 @@ export const LoginPage = () => {
   return (
     <main>      
       <HeaderHero
-        title="Login"
-        subtitle="into your account :)"
+        title="Inicia sesión"
       />
       <LoginForm/>
     </main>

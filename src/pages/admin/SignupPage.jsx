@@ -5,8 +5,7 @@ export const SignupPage = () => {
   return (
     <main>
       <HeaderHero
-        title="Signup"
-        subtitle="join the community"
+        title="Registrar usuario"
       />
       <SignupForm/>
     </main>

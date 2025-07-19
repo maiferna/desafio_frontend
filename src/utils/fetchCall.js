@@ -17,9 +17,25 @@ export const fetchCall = async (url, method = "GET", headers = {}, body = null, 
 
     try {
         const response = await fetch(url, options);
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw data;
+        }
+        return data;
+
+    } catch (error) {
+        console.error("fetchCall error:", error);
+        throw error;
+    }
+};
+
+
+
+/* const response = await fetch(url, options);
         const text = await response.text();
 
-        console.log("🔍 Raw response:", text);
+        console.log("Raw response:", text);
 
         if (!text) {
             throw new Error("Respuesta vacía del servidor");
@@ -37,10 +53,4 @@ export const fetchCall = async (url, method = "GET", headers = {}, body = null, 
             throw json;
         }
 
-        return json;
-
-    } catch (error) {
-        console.error("fetchCall error:", error);
-        throw error;
-    }
-};
+        return json; */
