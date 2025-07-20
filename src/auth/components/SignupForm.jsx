@@ -12,7 +12,7 @@ export const SignupForm = () => {
     password: "",
   });
 
-  const { register } = useUser();
+  const { register, token } = useUser();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const urlBase = import.meta.env.VITE_API_URL_BASE;
@@ -25,7 +25,7 @@ export const SignupForm = () => {
 
     try {
       // *******IMPORTANTE: CAMBIAR URL POR LA VÁLIDA*******
-      const data = await fetchCall(`${urlBase}auth/signup`, "POST", {}, formToSend);
+      const data = await fetchCall(`${urlBase}auth/signup`, "POST", {}, formToSend, token);
 
       // Guardar en contexto global
       register(data.user, data.token);
@@ -39,9 +39,10 @@ export const SignupForm = () => {
       } else if (data.user.role === 'technician') {
         navigate('/technician-dashboard')
       } */
-      navigate('/register')
-    } catch (err) {
-      setError(err.message || "Error al registrarse");
+      navigate('/register');
+    } catch (error) {
+      console.log('ERROR REGISTRO', error);
+      setError(error.msg || "Error al registrarse");
     }
   };
 
@@ -115,7 +116,7 @@ export const SignupForm = () => {
         )} */}
 
         <button type="submit" className="btn btn-dark w-100 mt-4 mb-2"> Registrarse </button>
-        {error && <p className="text-danger">{error.message}</p>}
+        {error && <p className="text-danger">{error}</p>}
       </form>
     </section>
   )

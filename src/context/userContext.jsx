@@ -30,7 +30,6 @@ export const UserProvider = ({ children }) => {
             setUser(data.user);
         } catch (error) {
             console.log('Error al cargar el usuario', error);
-            localStorage.removeItem("token");
             setUser(null);
         } finally {
             setIsLoading(false);
