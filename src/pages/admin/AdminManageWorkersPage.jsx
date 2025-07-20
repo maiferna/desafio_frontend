@@ -1,7 +1,17 @@
-import React from 'react'
+import { RegisterForm } from './RegisterForm'
+import { HeaderHero } from '../../components/ui/HeaderHero'
+import { WorkersList } from './WorkersList'
+
 
 export const AdminManageWorkersPage = () => {
   return (
-    <div>AdminManageWorkersPage</div>
+    <main>
+      <HeaderHero
+        title="Gestionar operarios"
+        subtitle=""
+      />
+
+    <WorkersList/>
+    </main>
   )
 }

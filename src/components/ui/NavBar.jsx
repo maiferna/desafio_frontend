@@ -9,8 +9,15 @@ export const NavBar = () => {
     
     return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top px-3">
-        <div className="container-fluid">
-        <NavLink to="/" className="nav-link navbar-brand fw-bold fs-3">Plaguatec</NavLink>
+        <div className="container-fluid  d-flex justify-content-between align-items-center">
+        <NavLink to="/" className="navbar-brand d-flex align-items-center">
+            <img
+                src="https://plaguatec.com/wp-content/uploads/2022/09/plaguatec-logotipo@4x.png"
+                alt="Logotipo de Plaguatec"
+                className="img-fluid"
+                style={{ maxHeight: '50px' }}
+            />
+        </NavLink>
         
         <button className="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -45,8 +52,7 @@ export const NavBar = () => {
             {/* {user?.role === "admin" && ( */}
                 <>
                 <li><NavLink to="/admin" className="nav-link">Panel de Administrador</NavLink></li>
-                <li><NavLink to="/admin/planner" className="nav-link">Planner</NavLink></li>
-                <li><NavLink to="/admin/register-client" className="nav-link">Registrar Cliente</NavLink></li>
+                <li><NavLink to="/admin/planner" className="nav-link">Planificación</NavLink></li>
                 <li><NavLink to="/admin/manage-workers" className="nav-link">Gestionar Operarios</NavLink></li>
                 <li><NavLink to="/admin/manage-clients" className="nav-link">Gestionar Clientes</NavLink></li>
                 </>
