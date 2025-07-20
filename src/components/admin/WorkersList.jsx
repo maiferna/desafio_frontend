@@ -1,5 +1,5 @@
 import React from 'react'
-import { WorkerRow } from './WorkerRow'
+
 
 export const WorkersList = () => {
   return (

@@ -1,7 +1,8 @@
 import React from 'react'
 import { ClientRow } from './ClientRow'
 
-export const ClientList = () => {
+
+export const ClientsList = () => {
   return (
     <section className='my-5 py-5 mx-5'>
         <h3 className="fw-bold my-4 px-sm-1 px-md-0">Lista de clientes</h3>

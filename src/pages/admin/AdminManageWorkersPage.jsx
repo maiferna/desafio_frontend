@@ -1,6 +1,6 @@
 import { RegisterForm } from './RegisterForm'
 import { HeaderHero } from '../../components/ui/HeaderHero'
-import { WorkersList } from './WorkersList'
+
 
 
 export const AdminManageWorkersPage = () => {
@@ -11,7 +11,7 @@ export const AdminManageWorkersPage = () => {
         subtitle=""
       />
 
-    <WorkersList/>
+    <WorkersLis/>
     </main>
   )
 }
