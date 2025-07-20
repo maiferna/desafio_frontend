@@ -14,7 +14,7 @@ export const ClientDashboardPage = () => {
       />
 
       <div className="d-flex justify-content-center mb-5">
-        <button type="button" className="btn btn-dark btn-lg" onClick={() => navigate("/hire-service")}>
+        <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("/hire-service")}>
           Contratar nuevo servicio
         </button>
         {/* <button type="button" className="btn btn-dark btn-lg ms-2" onClick={() => navigate("/login")}>

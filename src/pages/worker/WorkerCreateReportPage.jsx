@@ -1,7 +1,13 @@
-import React from 'react'
+import { CreateReportForm } from "../../components/workers/CreateReportForm";
+
+
+
 
 export const WorkerCreateReportPage = () => {
+
   return (
-    <div>WorkerCreateReportPage</div>
+    <main>
+      <CreateReportForm/>
+    </main>
   )
 }

@@ -17,7 +17,7 @@ export const HomePage = () => {
         subtitle="Expertos en control de plagas y tratamientos de aguas"
       />
       <div className="d-flex justify-content-center mb-5 pb-5">
-        <button type="button" className="btn btn-dark btn-lg me-2 mb-5" onClick={() => navigate("/login")}>Login</button>
+        <button type="button" className="btn btn-dark btn-lg me-2 mb-5 rounded-1" onClick={() => navigate("/login")}>Login</button>
         {/* <button type="button" className="btn btn-dark btn-lg" onClick={() => navigate("/user/my-resources")}>My collection</button> */}
       </div>
       
