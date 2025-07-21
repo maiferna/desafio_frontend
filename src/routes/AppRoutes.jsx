@@ -5,9 +5,6 @@ import { ClientDashboardPage, ClientHireServicePage, ClientProfilePage } from ".
 import { WorkerCreateReportPage, WorkerDashboardPage, WorkerVisitDetailPage } from "../pages/worker"
 import { AdminDashboardPage, AdminEditVisitPage, AdminManageClientsPage, AdminManageWorkersPage, AdminPlannerPage } from "../pages/admin"
 
-
-
-
 export const AppRoutes = () => {
   return (
     <Routes>
