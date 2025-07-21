@@ -10,26 +10,28 @@ export const SignupForm = () => {
     name: "",
     email: "",
     password: "",
+    role: "",
+    id_cliente: ""
   });
 
   const { register, token } = useUser();
   const navigate = useNavigate();
-  const [error, setError] = useState(null);
+  const [errors, setErrors] = useState({});
   const urlBase = import.meta.env.VITE_API_URL_BASE;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
+    setErrors({});
 
     const formToSend = serializeForm();
 
     try {
-      // *******IMPORTANTE: CAMBIAR URL POR LA VÁLIDA*******
+
       const data = await fetchCall(`${urlBase}auth/signup`, "POST", {}, formToSend, token);
 
       // Guardar en contexto global
       register(data.user, data.token);
-
+      navigate('/register');
       // Redirigir según el role
       // *******IMPORTANTE: CAMBIAR URL POR LA VÁLIDA Y ROLES*******
       /* if (data.user.role === "admin") {
@@ -39,18 +41,23 @@ export const SignupForm = () => {
       } else if (data.user.role === 'technician') {
         navigate('/technician-dashboard')
       } */
-      navigate('/register');
+
     } catch (error) {
       console.log('ERROR REGISTRO', error);
-      setError(error.msg || "Error al registrarse");
+
+      if (error?.error) {
+        setErrors(error.error); // errores validados por campo
+      } else {
+        setErrors({ general: error.msg || "Error al registrarse" });
+      }
     }
   };
 
-
   return (
     <section className="container d-flex flex-column align-items-center justify-content-center my-5 border border-1 rounded-3 py-4 px-4">
-
       <form className='w-100 my-3 px-4' onSubmit={handleSubmit} noValidate>
+
+        {/* Nombre */}
         <div className="mb-3">
           <label htmlFor="registerName" className="fw-bold form-label">Nombre</label>
           <input
@@ -62,8 +69,10 @@ export const SignupForm = () => {
             value={formData.name}
             onChange={handleChange}
           />
+          {errors.name && <div className="text-danger">{errors.name.msg}</div>}
         </div>
 
+        {/* Email */}
         <div className="mb-3">
           <label htmlFor="registerEmail" className="fw-bold form-label">Email</label>
           <input
@@ -75,8 +84,10 @@ export const SignupForm = () => {
             value={formData.email}
             onChange={handleChange}
           />
+          {errors.email && <div className="text-danger">{errors.email.msg}</div>}
         </div>
 
+        {/* Contraseña */}
         <div className="mb-3">
           <label htmlFor="registerPassword" className="fw-bold form-label">Contraseña</label>
           <input
@@ -88,8 +99,10 @@ export const SignupForm = () => {
             value={formData.password}
             onChange={handleChange}
           />
+          {errors.password && <div className="text-danger">{errors.password.msg}</div>}
         </div>
 
+        {/* Rol */}
         <div className="mb-3">
           <label htmlFor="registerRole" className="fw-bold form-label">Rol</label>
           <input
@@ -101,23 +114,35 @@ export const SignupForm = () => {
             value={formData.role}
             onChange={handleChange}
           />
+          {errors.role && <div className="text-danger">{errors.role.msg}</div>}
         </div>
 
-        {/* TODO: Hacer fetch para obtener los clientes */}
-        {/* {formData.role === 'cliente' && (
-          <select name="id_cliente" onChange={handleChange}>
-            <option value="">Selecciona un cliente</option>
-            {clientes.map((cliente) => (
-              <option key={cliente.id_cliente} value={cliente.id_cliente}>
-                {cliente.nombre}
-              </option>
-            ))}
-          </select>
-        )} */}
+        {/* Cliente (si rol === cliente) */}
+        {formData.role === 'cliente' && (
+          <div className="mb-3">
+            <label htmlFor="id_cliente" className="fw-bold form-label">Cliente</label>
+            <select
+              className="form-control"
+              name="id_cliente"
+              id="id_cliente"
+              value={formData.id_cliente}
+              onChange={handleChange}
+            >
+              <option value="">Selecciona un cliente</option>
+              {/* TODO */}
+              {/* Aquí deberías cargar dinámicamente los clientes */}
+              <option value="1">Cliente 1</option>
+              <option value="2">Cliente 2</option>
+            </select>
+            {errors.id_cliente && <div className="text-danger">{errors.id_cliente.msg}</div>}
+          </div>
+        )}
 
-        <button type="submit" className="btn btn-dark w-100 mt-4 mb-2"> Registrarse </button>
-        {error && <p className="text-danger">{error}</p>}
+        <button type="submit" className="btn btn-dark w-100 mt-4 mb-2">Registrarse</button>
+
+        {/* Error general */}
+        {errors.general && <p className="text-danger">{errors.general}</p>}
       </form>
     </section>
-  )
-}
+  );
+};
