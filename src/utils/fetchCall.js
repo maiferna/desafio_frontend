@@ -1,17 +1,45 @@
-export const fetchCall = async (url, method = "GET", headers = {}, body = null, token = null) => {
+// export const fetchCall = async (url, method = "GET", headers = {}, body = null, token = null) => {
+//     const options = {
+//         method,
+//         headers: {
+//             "Content-Type": "application/json",
+//             ...headers,
+//         },
+//     };
+
+//     if (token) {
+//         options.headers.Authorization = `Bearer ${token}`;
+//     }
+
+//     if (body && (method === "POST" || method === "PUT" )) {
+//         options.body = JSON.stringify(body);
+//     }
+
+//     try {
+//         const response = await fetch(url, options);
+//         const data = await response.json();
+
+//         if (!response.ok) {
+//             throw data;
+//         }
+//         return data;
+
+//     } catch (error) {
+//         console.error("fetchCall error:", error);
+//         throw error;
+//     }
+// };
+export const fetchCall = async (url, method = "GET", headers = {}, body = null) => {
     const options = {
         method,
         headers: {
             "Content-Type": "application/json",
             ...headers,
         },
+        credentials: "include" // para que se envíe la cookie
     };
 
-    if (token) {
-        options.headers.Authorization = `Bearer ${token}`;
-    }
-
-    if (body && (method === "POST" || method === "PUT" )) {
+    if (body && (method === "POST" || method === "PUT")) {
         options.body = JSON.stringify(body);
     }
 
@@ -22,13 +50,14 @@ export const fetchCall = async (url, method = "GET", headers = {}, body = null, 
         if (!response.ok) {
             throw data;
         }
-        return data;
 
+        return data;
     } catch (error) {
         console.error("fetchCall error:", error);
         throw error;
     }
 };
+
 
 
 

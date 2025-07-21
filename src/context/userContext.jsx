@@ -1,4 +1,3 @@
-
 import { createContext, useContext, useState, useEffect } from "react";
 import { fetchCall } from "../utils/fetchCall";
 
@@ -9,7 +8,6 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
 
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('token') || null);
   const [isLoading, setIsLoading] = useState(true);
   const urlBase = import.meta.env.VITE_API_URL_BASE;
 
@@ -17,57 +15,50 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const authUser = async () => {
-      // Verificar que haya token para ejecutar el fetchCall
-      if (!token) {
-        setIsLoading(false);
-        return;
-      }
       try {
-        // Obtener usuario si lo hay
-        // *******IMPORTANTE: CAMBIAR URL POR LA VÁLIDA*******
-        const data = await fetchCall(`${urlBase}auth/user`, "GET", {}, null, token);
-        console.log('DATA RECIBIDA DEL BACK', data)
+        const data = await fetchCall(`${urlBase}auth/user`);
         setUser(data.user);
       } catch (error) {
-        console.log('Error al cargar el usuario', error);
-        localStorage.removeItem("token");
+        console.log("Usuario no autenticado", error);
         setUser(null);
       } finally {
         setIsLoading(false);
       }
-    }
+    };
     authUser();
   }, []);
 
-  // Función register: guarda el user en el estado y el token en el localStorage
-  const register = (userData, jwtToken) => {
-    try {
-      localStorage.setItem("token", jwtToken);
-      setToken(jwtToken);
-      setUser(userData);
-    } catch (error) {
-      throw error;
-    }
-  }
+  const register = () => { };
 
   // Función login: guarda user en el estado y token en el localStorage
-  const login = (userData, jwtToken) => {
-    localStorage.setItem("token", jwtToken);
-    setToken(jwtToken);
+  // const login = (userData, jwtToken) => {
+  //   localStorage.setItem("token", jwtToken);
+  //   setToken(jwtToken);
+  //   setUser(userData);
+  // };
+  const login = (userData) => {
     setUser(userData);
   };
 
   // Función logout: elimina el token del localStorage
-  const logout = () => {
-    localStorage.removeItem("token");
-    setToken(null);
-    setUser(null);
+  // const logout = () => {
+  //   localStorage.removeItem("token");
+  //   setToken(null);
+  //   setUser(null);
+  // };
+  const logout = async () => {
+    try {
+      await fetchCall(`${urlBase}auth/logout`, "POST");
+      setUser(null);
+    } catch (error) {
+      console.error("Error al cerrar sesión", error);
+    }
   };
 
   if (isLoading) return null; // evita renderizar mientras carga datos
 
   return (
-    <UserContext.Provider value={{ user, token, login, register, logout }}>
+    <UserContext.Provider value={{ user, login, logout, isLoading }}>
       {children}
     </UserContext.Provider>
   );

@@ -14,7 +14,7 @@ export const RegisterForm = () => {
     id_cliente: ""
   });
 
-  const { register, token } = useUser();
+  const { register } = useUser();
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const urlBase = import.meta.env.VITE_API_URL_BASE;
@@ -27,10 +27,10 @@ export const RegisterForm = () => {
 
     try {
 
-      const data = await fetchCall(`${urlBase}auth/signup`, "POST", {}, formToSend, token);
+      const data = await fetchCall(`${urlBase}auth/signup`, "POST", {}, formToSend);
 
       // Guardar en contexto global
-      register(data.user, data.token);
+      // register(data.user, data.token);
       navigate('/register');
       // Redirigir según el role
       // *******IMPORTANTE: CAMBIAR URL POR LA VÁLIDA Y ROLES*******
