@@ -1,7 +1,8 @@
 import React from 'react'
-import { RegisterForm } from './RegisterForm'
+
 import { HeaderHero } from '../../components/ui/HeaderHero'
 import { ClientsList } from '../../components/admin/ClientsLists'
+import { RegisterForm } from '../../components/admin/RegisterForm'
 
 
 export const AdminManageClientsPage = () => {
@@ -11,9 +12,9 @@ export const AdminManageClientsPage = () => {
         title="Gestionar clientes"
         subtitle="Registro de nuevo cliente"
       />
-      <RegisterForm/>
+      <RegisterForm />
 
-    <ClientsList/>
+      <ClientsList />
     </main>
   )
 }
