@@ -21,7 +21,7 @@
 //     e.preventDefault();
 //     setError(null); // Limpia errores anteriores
 //     const formToSend = serializeForm();
-    
+
 //     try {
 //       const data = await fetchCall("http://localhost:5000/api/v1/auth/login", "POST", {}, formToSend);
 
@@ -39,7 +39,7 @@
 //       setError(err.message || "Error en el login");
 //     }
 //   };
- 
+
 //   return (
 //     <section className="container d-flex flex-column align-items-center justify-content-center my-5 py-4 px-4">
 
@@ -102,8 +102,6 @@ export const LoginForm = () => {
     e.preventDefault();
     setError({}); // Limpia errores anteriores
     const formToSend = serializeForm();
-    console.log('FORM TO SEND', formToSend)
-
     try {
 
       const data = await fetchCall(`${urlBase}auth`, "POST", {}, formToSend);
