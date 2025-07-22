@@ -51,7 +51,6 @@ export const AppRoutes = () => {
           <Route path='manage-services-edit/:id' element={<AdminEditServicePage />} />
           <Route path='manage-visits' element={<AdminManageVisitsPage />} />
           <Route path='manage-visits-create' element={<AdminCreateVisitPage />} />
-
         </Route>
         {/* </Route> */}
 
