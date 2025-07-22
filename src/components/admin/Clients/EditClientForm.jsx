@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from "react-router";
 import { useForm } from '../../../hooks/useForm';
 import { fetchCall } from '../../../utils/fetchCall';
-import { useFetch } from '../../../hooks/useFetch';
 
 
 export const EditClientForm = ({ id }) => {
@@ -61,6 +60,7 @@ export const EditClientForm = ({ id }) => {
   return (
     <section className="container d-flex flex-column align-items-center justify-content-center my-5 border border-1 rounded-3 py-4 px-4">
       <form className='w-100 my-3 px-4' onSubmit={handleSubmit} noValidate>
+        <input type="hidden" value={id} />
 
         {/* Nombre */}
         <div className="mb-3">

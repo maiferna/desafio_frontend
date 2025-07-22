@@ -2,15 +2,13 @@
 import { InstallationRow } from './InstallationRow'
 
 
-export const InstallationList = () => {
+export const InstallationList = ({installations, setInstallations}) => {
   return (
-    <section className='my-5 pb-5 mx-5'>
-      <h3 className="fw-bold my-4 px-sm-1 px-md-0">Lista de instalaciones</h3>
-      <div className="d-flex row g-0 mb-5">
-        <InstallationRow />
-        <InstallationRow />
-        <InstallationRow />
-      </div>
-    </section>
+    <section className='my-5 py-5 mx-5'>
+            <h3 className="fw-bold my-4 px-sm-1 px-md-0">Lista de instalaciones</h3>
+            <div>
+                {installations.map(installation => <InstallationRow installation={installation} setInstallations={setInstallations} key={installation.id_instalacion} />)}
+            </div>
+        </section>
   )
 }

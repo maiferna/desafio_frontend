@@ -7,6 +7,7 @@ import { AdminDashboardPage, AdminEditVisitPage, AdminManageClientsPage, AdminMa
 import { AdminWebUserRegister } from "../pages/admin/AdminWebUserRegister"
 import { AdminManageClientDataPage } from "../pages/admin/AdminManageClientDataPage"
 import { EditClientForm } from "../components/admin/Clients/EditClientForm"
+import { AdminEditInstallationPage } from "../pages/admin/AdminEditInstallationPage"
 
 export const AppRoutes = () => {
   return (
@@ -47,6 +48,7 @@ export const AppRoutes = () => {
             <Route path='create-user' element={<AdminWebUserRegister />} />
             {/* <Route path='create-installation' element={<AdminManageClientDataPage />} /> */}
             <Route path='manage-clients/edit/:id' element={<AdminManageClientDataPage/>}/>
+            <Route path='manage-installation/edit/:id' element={<AdminEditInstallationPage/>}/>
           </Route>
         {/* </Route> */}
 

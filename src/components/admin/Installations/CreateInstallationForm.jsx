@@ -4,32 +4,40 @@ import { useForm } from '../../../hooks/useForm';
 import { fetchCall } from '../../../utils/fetchCall';
 
 
-export const CreateInstallationForm = () => {
-  const { formData, handleChange, resetInput, serializeForm } = useForm({
+export const CreateInstallationForm = ({ id }) => {
+  const { formData, handleChange, resetInput } = useForm({
     name: "",
     adress: "",
-    coord: "",
-    checkpoints: "",
-    details: "",
-    image: ""
+    locality: "",
+    checkpoints: ""
   });
-
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
+  const [file, setFile] = useState(null);
   const urlBase = import.meta.env.VITE_API_URL_BASE;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors({});
 
-    const formToSend = serializeForm();
+    const dataToSend = new FormData();
+    dataToSend.append("id", id);
+    dataToSend.append("name", formData.name);
+    dataToSend.append("adress", formData.adress);
+    dataToSend.append("locality", formData.locality);
+    dataToSend.append("checkpoints", formData.checkpoints);
+    if (file) {
+      dataToSend.append("image", file);
+    }
 
     try {
-      const data = await fetchCall(`${urlBase}installations`, "POST", {}, formToSend);
-      resetInput();
+      const data = await fetch(`${urlBase}installations`, {method: 'POST', body: dataToSend});
 
+      console.log("Instalación creada:", data);
+      resetInput();
+      setFile(null)
     } catch (error) {
-      console.log('Error CreateInstallationForm', error);
+      console.log('Error al crear nueva instalación', error);
 
       if (error?.error) {
         setErrors(error.error); // errores validados por campo
@@ -42,7 +50,7 @@ export const CreateInstallationForm = () => {
   return (
     <section className="container d-flex flex-column align-items-center justify-content-center my-5 border border-1 rounded-3 py-4 px-4">
       <form className='w-100 my-3 px-4' onSubmit={handleSubmit} noValidate>
-
+        <input type="hidden" value={id} />
         {/* Nombre */}
         <div className="mb-3">
           <label htmlFor="name" className="fw-bold form-label">Nombre</label>
@@ -67,25 +75,25 @@ export const CreateInstallationForm = () => {
             id="adress"
             placeholder="Ingresa una dirección"
             name="adress"
-            value={formData.role}
+            value={formData.adress}
             onChange={handleChange}
           />
           {errors.role && <div className="text-danger">{errors.adress.msg}</div>}
         </div>
 
-        {/* Coordenadas */}
+        {/* Localidad */}
         <div className="mb-3">
-          <label htmlFor="coord" className="fw-bold form-label">Coordenadas</label>
+          <label htmlFor="locality" className="fw-bold form-label">Localidad</label>
           <input
             type="text"
             className="form-control"
-            id="coord"
-            placeholder="Ingresa unas coordenadas"
-            name="coord"
-            value={formData.coord}
+            id="locality"
+            placeholder="Ingresa una localidad"
+            name="locality"
+            value={formData.locality}
             onChange={handleChange}
           />
-          {errors.email && <div className="text-danger">{errors.coord.msg}</div>}
+          {errors.email && <div className="text-danger">{errors.locality.msg}</div>}
         </div>
 
         {/* Puntos de control */}
@@ -102,7 +110,7 @@ export const CreateInstallationForm = () => {
           {errors.password && <div className="text-danger">{errors.tel.msg}</div>}
         </div>
 
-        {/* Detalles */}
+        {/* Detalles }
         <div className="mb-4">
           <label htmlFor="installationDetails" className="fw-bold form-label">Detalles sobre la instalación</label>
           <textarea
@@ -114,24 +122,23 @@ export const CreateInstallationForm = () => {
             value={formData.installationDetails}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
 
         {/* Imagen */}
         <div className="mb-3">
-          <label htmlFor="installationImg" className="fw-bold form-label">Plano de la instalación</label>
+          <label htmlFor="image" className="fw-bold form-label">Plano de la instalación</label>
           <input
             type="file"
             className="form-control"
-            id="installationImg"
+            id="image"
             placeholder="Ingresa el plano de la localización"
-            name="installationImg"
-            value={formData.installationImg}
-            onChange={handleChange}
+            name="image"
+            onChange={(ev) => setFile(ev.target.files[0])}
           />
-          {errors.role && <div className="text-danger">{errors.installationImg.msg}</div>}
+          {errors.role && <div className="text-danger">{errors.image.msg}</div>}
         </div>
 
-        <button type="submit" className="btn btn-dark w-100 mt-4 mb-2">Crear nuevo cliente</button>
+        <button type="submit" className="btn btn-dark w-100 mt-4 mb-2">Crear nueva instalación</button>
 
         {/* Error general */}
         {errors.general && <p className="text-danger">{errors.general}</p>}
