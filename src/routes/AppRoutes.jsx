@@ -43,7 +43,6 @@ export const AppRoutes = () => {
         <Route path='/admin'>
           <Route index element={<AdminDashboardPage />} />
           <Route path='planner' element={<AdminPlannerPage />} />
-          <Route path='edit-visit' element={<AdminEditVisitPage />} />
           <Route path='manage-workers' element={<AdminManageWorkersPage />} />
           <Route path='manage-clients' element={<AdminManageClientsPage />} />
           <Route path='manage-services' element={<AdminManageServicesPage />} />
@@ -51,6 +50,7 @@ export const AppRoutes = () => {
           <Route path='manage-services-edit/:id' element={<AdminEditServicePage />} />
           <Route path='manage-visits' element={<AdminManageVisitsPage />} />
           <Route path='manage-visits-create' element={<AdminCreateVisitPage />} />
+          <Route path='manage-visits-edit/:id' element={<AdminEditVisitPage />} />
         </Route>
         {/* </Route> */}
 
