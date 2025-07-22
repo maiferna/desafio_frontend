@@ -11,7 +11,7 @@ export const fetchCall = async (url, method = "GET", headers = {}, body = null, 
         options.headers.Authorization = `Bearer ${token}`;
     }
 
-    if (body && (method === "POST" || method === "PUT" )) {
+    if (body && (method === "POST" || method === "PUT")) {
         options.body = JSON.stringify(body);
     }
 
