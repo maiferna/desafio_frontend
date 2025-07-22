@@ -1,6 +1,8 @@
 import React from 'react'
-import { FilterByBar } from '../ui/FilterByBar'
+
 import { VisitRowAdmin } from './VisitRowAdmin'
+import { FilterByBar } from '../../ui/FilterByBar'
+
 
 export const VisitsListAdmin = ({title="title"}) => {
   return (

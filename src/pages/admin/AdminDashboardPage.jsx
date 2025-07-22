@@ -1,8 +1,9 @@
 import React from 'react'
 import { HeaderHero } from '../../components/ui/HeaderHero'
 import { useNavigate } from 'react-router';
-import { ReportsList } from '../../components/admin/ReportsList';
+
 import { Graphics } from '../../components/admin/Graphics';
+import { ReportsList } from '../../components/admin/Reports/ReportsList';
 
 export const AdminDashboardPage = () => {
   const navigate = useNavigate();

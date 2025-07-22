@@ -1,19 +1,16 @@
+import React from 'react'
+import { RegisterForm } from '../../components/admin/RegisterForm'
 import { HeaderHero } from '../../components/ui/HeaderHero'
 import { CreateClientForm } from '../../components/admin/Clients/CreateClientForm'
-import { ClientsList } from '../../components/admin/Clients/ClientsLists'
 
-
-
-export const AdminManageClientsPage = () => {
+export const AdminWebUserRegister = () => {
   return (
     <main>
       <HeaderHero
-        title="Gestionar clientes"
-        subtitle="Crear nuevo cliente"
+        title="Registrar usuario"
+        subtitle="Añadir usuario web"
       />
       <CreateClientForm/>
-
-      <ClientsList />
     </main>
   )
 }

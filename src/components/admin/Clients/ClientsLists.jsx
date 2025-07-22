@@ -1,7 +1,6 @@
 import React from 'react'
 import { ClientRow } from './ClientRow'
 
-
 export const ClientsList = () => {
   return (
     <section className='my-5 py-5 mx-5'>
