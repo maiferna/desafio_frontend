@@ -34,17 +34,6 @@ export const LoginForm = () => {
         navigate("/worker");
       }
 
-      // Redirigir según el role
-      // *******IMPORTANTE: CAMBIAR URL POR LA VÁLIDA Y ROLES*******
-      /* if (data.user.role === "admin") {
-        navigate("/admin-dashboard");
-      } else if (data.user.role === 'client') {
-        navigate("/client-dashboard");
-      } else if (data.user.role === 'technician') {
-        navigate('/technician-dashboard')
-      } */
-
-
     } catch (err) {
       if (typeof err?.error === "string") {
         setError({ general: err.error });

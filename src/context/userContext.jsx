@@ -28,24 +28,10 @@ export const UserProvider = ({ children }) => {
     authUser();
   }, []);
 
-  const register = () => { };
-
-  // Función login: guarda user en el estado y token en el localStorage
-  // const login = (userData, jwtToken) => {
-  //   localStorage.setItem("token", jwtToken);
-  //   setToken(jwtToken);
-  //   setUser(userData);
-  // };
   const login = (userData) => {
     setUser(userData);
   };
 
-  // Función logout: elimina el token del localStorage
-  // const logout = () => {
-  //   localStorage.removeItem("token");
-  //   setToken(null);
-  //   setUser(null);
-  // };
   const logout = async () => {
     try {
       await fetchCall(`${urlBase}auth/logout`, "POST");

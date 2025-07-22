@@ -5,10 +5,6 @@ export const LogoutButton = () => {
   const { logout } = useUser();
   const navigate = useNavigate();
 
-  //   const handleLogout = async() => {
-  //     logout();            // Limpiar contexto + localStorage
-  //     navigate('/login');  // Redirigir al login (o '/' si prefieres)
-  //   };
   const handleLogout = async () => {
     await logout();       // Llama a la API y limpia el contexto
     navigate('/login');   // Redirige a login

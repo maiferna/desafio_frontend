@@ -6,7 +6,6 @@ import { useUser } from "../../hooks/useUser.js";
 // NAVBAR
 export const NavBar = () => {
     const { user, isLoading } = useUser();
-    //const { user, logout } = useUser();
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top px-3">
@@ -34,23 +33,9 @@ export const NavBar = () => {
                     <ul className="navbar-nav ms-auto text-center d-flex gap-2">
                         <li><NavLink to="/" className="nav-link"> Homepage </NavLink></li>
 
-                        {/* {!user && ( 
-                        <>
-                            <li><NavLink to="/login" className="nav-link">Login </NavLink></li>
-                        </>
-                        {/* )} */}
-
                         {!user && (
                             <li><NavLink to="/login" className="nav-link">Login</NavLink></li>
                         )}
-
-                        {/* {user?.role === "cliente" && ( 
-                        <>
-                            <li><NavLink to="/client" className="nav-link">Panel de Cliente </NavLink></li>
-                            <li><NavLink to="/client/hire-service" className="nav-link">Contratar servicio </NavLink> </li>
-                            <li><NavLink to="/client/profile" className="nav-link">Datos de mi empresa </NavLink></li>
-                        </>
-                        {/* )} */}
 
                         {user?.role === "cliente" && (
                             <>
@@ -60,29 +45,12 @@ export const NavBar = () => {
                             </>
                         )}
 
-                        {/* {user?.role === "operario" && ( 
-                        <>
-                            <li><NavLink to="/worker" className="nav-link">Panel de Operario</NavLink></li>
-                            <li><NavLink to="/worker/make-report" className="nav-link">Crear Informe</NavLink></li>
-                        </>
-                        {/* )} */}
-
                         {user?.role === "tecnico" && (
                             <>
                                 <li><NavLink to="/worker" className="nav-link">Panel de Operario</NavLink></li>
                                 <li><NavLink to="/worker/make-report" className="nav-link">Crear Informe</NavLink></li>
                             </>
                         )}
-
-
-                        {/* {user?.role === "admin" && ( 
-                        <>
-                            <li><NavLink to="/admin" className="nav-link">Panel de Administrador</NavLink></li>
-                            <li><NavLink to="/admin/planner" className="nav-link">Planificación</NavLink></li>
-                            <li><NavLink to="/admin/manage-workers" className="nav-link">Gestionar Operarios</NavLink></li>
-                            <li><NavLink to="/admin/manage-clients" className="nav-link">Gestionar Clientes</NavLink></li>
-                        </>
-                        {/* )} */}
 
                         {user?.role === "admin" && (
                             <>
