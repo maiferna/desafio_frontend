@@ -6,6 +6,7 @@ import { WorkerCreateReportPage, WorkerDashboardPage, WorkerVisitDetailPage } fr
 import { AdminDashboardPage, AdminEditVisitPage, AdminManageClientsPage, AdminManageWorkersPage, AdminPlannerPage } from "../pages/admin"
 import { AdminWebUserRegister } from "../pages/admin/AdminWebUserRegister"
 import { AdminManageClientDataPage } from "../pages/admin/AdminManageClientDataPage"
+import { EditClientForm } from "../components/admin/Clients/EditClientForm"
 
 export const AppRoutes = () => {
   return (
@@ -44,7 +45,8 @@ export const AppRoutes = () => {
             <Route path='manage-workers' element={<AdminManageWorkersPage />} />
             <Route path='manage-clients' element={<AdminManageClientsPage />} />
             <Route path='create-user' element={<AdminWebUserRegister />} />
-            <Route path='create-installation' element={<AdminManageClientDataPage />} />
+            {/* <Route path='create-installation' element={<AdminManageClientDataPage />} /> */}
+            <Route path='manage-clients/edit/:id' element={<AdminManageClientDataPage/>}/>
           </Route>
         {/* </Route> */}
 

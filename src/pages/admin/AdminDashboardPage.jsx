@@ -19,6 +19,7 @@ export const AdminDashboardPage = () => {
         <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("planner")}>Gestionar visitas (plan) </button>
         <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-workers")}>Gestionar operarios</button>
         <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-clients")}>Gestionar clientes</button>
+        <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-clients")}>Gestionar usuarios de la web</button>
       </div>
 
       <ReportsList title="Listado de informes"/>

@@ -4,7 +4,7 @@ import { useForm } from '../../../hooks/useForm';
 import { fetchCall } from '../../../utils/fetchCall';
 
 
-export const CreateClientForm = () => {
+export const CreateClientForm = ({setClients}) => {
   const { formData, handleChange, resetInput, serializeForm } = useForm({
     name: "",
     email: "",
@@ -22,11 +22,13 @@ export const CreateClientForm = () => {
     setErrors({});
 
     const formToSend = serializeForm();
+    console.log('FORM TO SEND FRONT', formToSend)
 
     try {
-      const data = await fetchCall(`${urlBase}clients`, "POST", {}, formToSend);
+      const newClient = await fetchCall(`${urlBase}clients`, "POST", {}, formToSend);
       resetInput();
-
+      console.log('NEW CLIENT', newClient)
+      setClients(prev => [...prev, newClient]);
     } catch (error) {
       console.log('Error CreateClientForm', error);
 
@@ -96,7 +98,7 @@ export const CreateClientForm = () => {
             id="adress"
             placeholder="Ingresa una dirección"
             name="adress"
-            value={formData.role}
+            value={formData.adress}
             onChange={handleChange}
           />
           {errors.role && <div className="text-danger">{errors.adress.msg}</div>}

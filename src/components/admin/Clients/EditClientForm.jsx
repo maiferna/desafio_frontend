@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import { useNavigate } from "react-router";
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from "react-router";
 import { useForm } from '../../../hooks/useForm';
-import { useUser } from '../../../hooks/useUser';
 import { fetchCall } from '../../../utils/fetchCall';
+import { useFetch } from '../../../hooks/useFetch';
 
 
-export const EditClientForm = () => {
-  const { formData, handleChange, resetInput, serializeForm } = useForm({
+export const EditClientForm = ({ id }) => {
+  const { formData, handleChange, resetInput, serializeForm, setFormData } = useForm({
     name: "",
     email: "",
     tel: "",
@@ -18,6 +18,26 @@ export const EditClientForm = () => {
   const [errors, setErrors] = useState({});
   const urlBase = import.meta.env.VITE_API_URL_BASE;
 
+  useEffect(() => {
+    const getClientData = async () => {
+      try {
+        const data = await fetchCall(`${import.meta.env.VITE_API_URL_BASE}clients/${id}`);
+        setFormData({
+          name: data.nombre || "",
+          email: data.email || "",
+          tel: data.tel || "",
+          adress: data.direccion || "",
+          workType: data.sector || ""
+        });
+      } catch (error) {
+        console.log(error)
+        throw error;
+      }
+    }
+    getClientData()
+  }, [id])
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors({});
@@ -25,9 +45,8 @@ export const EditClientForm = () => {
     const formToSend = serializeForm();
 
     try {
-      const data = await fetchCall(`${urlBase}clients/${id}`, "PUT", {}, formToSend);
-      resetInput();
-
+      const res = await fetchCall(`${urlBase}clients/${id}`, "PUT", {}, formToSend);
+      console.log('usuario actualizado con éxito')
     } catch (error) {
       console.log('Error CreateClientForm', error);
 
@@ -50,7 +69,6 @@ export const EditClientForm = () => {
             type="text"
             className="form-control"
             id="name"
-            placeholder="Personal o de empresa"
             name="name"
             value={formData.name}
             onChange={handleChange}
@@ -65,7 +83,6 @@ export const EditClientForm = () => {
             type="email"
             className="form-control"
             id="email"
-            placeholder="Ingresa un email de cliente"
             name="email"
             value={formData.email}
             onChange={handleChange}
@@ -80,7 +97,6 @@ export const EditClientForm = () => {
             type="text"
             className="form-control"
             id="tel"
-            placeholder="Ingresa un teléfono de contacto"
             name="tel"
             value={formData.tel}
             onChange={handleChange}
@@ -95,9 +111,8 @@ export const EditClientForm = () => {
             type="text"
             className="form-control"
             id="adress"
-            placeholder="Ingresa una dirección"
             name="adress"
-            value={formData.role}
+            value={formData.adress}
             onChange={handleChange}
           />
           {errors.role && <div className="text-danger">{errors.adress.msg}</div>}
@@ -110,7 +125,6 @@ export const EditClientForm = () => {
             type="text"
             className="form-control"
             id="workType"
-            placeholder="Ingresa un sector"
             name="workType"
             value={formData.workType}
             onChange={handleChange}
@@ -118,7 +132,7 @@ export const EditClientForm = () => {
           {errors.role && <div className="text-danger">{errors.workType.msg}</div>}
         </div>
 
-        <button type="submit" className="btn btn-dark w-100 mt-4 mb-2">Crear nuevo cliente</button>
+        <button type="submit" className="btn btn-dark w-100 mt-4 mb-2">Guardar cambios</button>
 
         {/* Error general */}
         {errors.general && <p className="text-danger">{errors.general}</p>}

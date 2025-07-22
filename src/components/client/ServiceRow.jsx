@@ -13,6 +13,7 @@ export const ServiceRow = ({
       </div>
 
       <button className="btn btn-sm btn-dark mt-2 rounded-1 align-self-start"> Ver detalles de servicio </button>
+      <button className="btn btn-sm btn-light mt-2 rounded-1 align-self-start"> Descargar informe </button>
     </article>
   )
 }
