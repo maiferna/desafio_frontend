@@ -31,14 +31,16 @@ export const CreateInstallationForm = ({ id, setInstallations }) => {
     if (file) {
       dataToSend.append("image", file);
     }
-
+/* TODO: revisar estas dos llamadas */
     try {
-      const res = await fetch(`${urlBase}installations`, {method: 'POST', body: dataToSend});
+      const res = await fetch(`${urlBase}installations`, { method: 'POST', body: dataToSend });
       const data = await res.json();
       console.log("Instalación creada:", data);
+      const updatedRes = await fetch(`${urlBase}installations/client/${id}`);
+      const updatedInstallations = await updatedRes.json();
       resetInput();
       setFile(null)
-      setInstallations(prev => [...prev, data]);
+      setInstallations(updatedInstallations);
     } catch (error) {
       console.log('Error al crear nueva instalación', error);
 
