@@ -1,9 +1,7 @@
 import React from 'react'
 import { HeaderHero } from '../../components/ui/HeaderHero'
-import { VisitsListAdmin } from '../../components/admin/VisitsListAdmin'
-import { VisitsRoutes } from '../../components/admin/VisitsRoutes'
-
-
+import { VisitsListAdmin } from '../../components/admin/Visits/VisitsListAdmin'
+import { VisitsRoutes } from '../../components/admin/Visits/VisitsRoutes'
 
 export const AdminPlannerPage = () => {
   return (

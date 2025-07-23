@@ -1,8 +1,9 @@
 import React from 'react'
 import { HeaderHero } from '../../components/ui/HeaderHero'
 import { useNavigate } from 'react-router';
-import { ReportsList } from '../../components/admin/ReportsList';
+
 import { Graphics } from '../../components/admin/Graphics';
+import { ReportsList } from '../../components/admin/Reports/ReportsList';
 
 export const AdminDashboardPage = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ export const AdminDashboardPage = () => {
         <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("planner")}>Gestionar visitas (plan) </button>
         <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-workers")}>Gestionar operarios</button>
         <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-clients")}>Gestionar clientes</button>
+        <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-clients")}>Gestionar usuarios de la web</button>
       </div>
 
       <ReportsList title="Listado de informes"/>

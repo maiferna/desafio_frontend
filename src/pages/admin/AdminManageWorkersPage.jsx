@@ -1,6 +1,6 @@
 
 import { RegisterForm } from '../../components/admin/RegisterForm'
-import { WorkersList } from '../../components/admin/WorkersList'
+import { WorkersList } from '../../components/admin/Workers/WorkersList'
 import { HeaderHero } from '../../components/ui/HeaderHero'
 
 
