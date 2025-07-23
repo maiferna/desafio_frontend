@@ -11,6 +11,7 @@ export const useFetch = (url, method = "GET", headers = {}, body = null) => {
     setLoading(true);
     try {
       const data = await fetchCall(url, method, headers, body);
+
       setData(data);
       setError(null);
       return data;

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import { fetchCall } from "../utils/fetchCall";
 
 // CREAR CONTEXTO
@@ -49,5 +49,3 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
-
-
