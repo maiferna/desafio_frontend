@@ -15,7 +15,7 @@ export const VisitRowAdmin = ({
   }
 
   const onDeleteVisit = () => {
-    setData(prevData => prevData.filter(v => s.id_visita !== visit.id_visita));
+    setData(prevData => prevData.filter(v => v.id_visita !== visit.id_visita));
     fetchCall(`${import.meta.env.VITE_API_URL_BASE}services/${service.id_servicio}`, "DELETE")
   }
 
@@ -26,7 +26,7 @@ export const VisitRowAdmin = ({
         {error && <p>Error: {error}</p>}
         {!loading && !error && (
           <>
-            <p className="card-text mb-1 fw-bold">{`${data[0].cliente}: ${data[0].direccion_instalacion}`}</p>
+            <p className="card-text mb-1 fw-bold">{`${data[0]?.cliente}: ${data[0]?.direccion_instalacion}`}</p>
             {data.map(row => <p className="card-text mb-1" key={`row-${row.servicio}`}>{row.servicio}</p>)}
             <label className="btn btn-sm btn-outline-danger rounded-1" htmlFor="done1">TODO: AQUI DEBERIAMOS DE AÑADIR EL ESTADO</label>
           </>
