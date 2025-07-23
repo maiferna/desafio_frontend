@@ -20,7 +20,7 @@ export const VisitRowAdmin = ({
   }
 
   return (
-    <article className="pt-1 pb-1 px-2 d-flex justify-content-between">
+    <article className="py-1 px-2 d-flex flex-row justify-content-between card rounded-1">
       <div>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
@@ -36,7 +36,7 @@ export const VisitRowAdmin = ({
       <div className="d-flex flex-column justify-content-center gap-1">
         <input type="checkbox" className="btn-check" id="done1" autoComplete="off" />
         <button type="button" className="btn btn-dark btn-sm rounded-1" onClick={onEditVisit}>Editar</button>
-        <button type="button" className="btn btn-dark btn-sm rounded-1" onClick={onDeleteVisit}>Eliminar</button>
+        <button type="button" className="btn btn-outline-danger btn-sm rounded-1" onClick={onDeleteVisit}>Eliminar</button>
       </div>
     </article>
   );
