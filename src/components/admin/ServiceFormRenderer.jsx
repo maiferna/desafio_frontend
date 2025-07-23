@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { fetchCall } from '../../utils/fetchCall'; // o la ruta donde tengas tu util
+import { fetchCall } from '../../utils/fetchCall';
 
-export const ServiceFormRenderer = ({ serviceId }) => {
-    const [formDefinition, setFormDefinition] = useState(null); // datos del servicio
+export const ServiceFormRenderer = ({ serviceId, initialValues, onFormChange }) => {
+    const [formDefinition, setFormDefinition] = useState(null);
     const [formState, setFormState] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -14,16 +14,17 @@ export const ServiceFormRenderer = ({ serviceId }) => {
             setLoading(true);
             try {
                 const response = await fetchCall(`${import.meta.env.VITE_API_URL_BASE}services/${serviceId}`);
+                const serviceData = response.data || response;
+                setFormDefinition(serviceData.datos || {});
 
-                const serviceData = response.data || response; // por si tu backend no envuelve en { data: ... }
-                setFormDefinition(serviceData.datos || {}); // solo nos interesa el campo `datos`
-
-                // Inicializa el estado del formulario
                 const initialState = {};
                 Object.entries(serviceData.datos || {}).forEach(([key, type]) => {
-                    initialState[key] = type === 'bool' ? false : ''; // booleans por defecto false
+                    initialState[key] = type === 'bool' ? false : '';
                 });
-                setFormState(initialState);
+
+                const mergedState = { ...initialState, ...initialValues };
+                setFormState(mergedState);
+                onFormChange?.(mergedState); // initialize parent with merged state
             } catch (err) {
                 setError(err.message || 'Failed to load service');
             } finally {
@@ -35,13 +36,9 @@ export const ServiceFormRenderer = ({ serviceId }) => {
     }, [serviceId]);
 
     const handleChange = (name, value) => {
-        setFormState(prev => ({ ...prev, [name]: value }));
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Submitting form state:", formState);
-        // Aquí haces fetch para crear ejecución_servicio, etc.
+        const newState = { ...formState, [name]: value };
+        setFormState(newState);
+        onFormChange?.(newState);
     };
 
     if (loading) return <p>Loading form...</p>;
@@ -80,8 +77,6 @@ export const ServiceFormRenderer = ({ serviceId }) => {
                     )}
                 </div>
             ))}
-
-            <button onClick={handleSubmit}>Guardar datos</button>
         </article>
     );
 };

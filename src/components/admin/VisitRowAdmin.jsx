@@ -15,9 +15,9 @@ export const VisitRowAdmin = ({
     navigate(`/admin/manage-visits-edit/${visit.id_visita}`)
   }
 
-  const onDeleteVisit = () => {
+  const onDeleteVisit = async () => {
     setData(prevData => prevData.filter(v => v.id_visita !== visit.id_visita));
-    fetchCall(`${import.meta.env.VITE_API_URL_BASE}services/${service.id_servicio}`, "DELETE")
+    await fetchCall(`${import.meta.env.VITE_API_URL_BASE}visits/${visit.id_visita}`, "DELETE")
   }
 
   return (
