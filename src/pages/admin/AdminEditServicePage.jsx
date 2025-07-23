@@ -6,7 +6,7 @@ import { useParams } from 'react-router';
 export const AdminEditServicePage = () => {
     const { id } = useParams();
     return (
-        <main>
+        <main className="my-5 pb-5">
             <HeaderHero
                 title="Gestión de servicios"
                 subtitle="Editar servicio"

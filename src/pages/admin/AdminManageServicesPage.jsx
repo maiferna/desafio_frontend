@@ -12,7 +12,11 @@ export const AdminManageServicesPage = () => {
                 title="Gestión de servicios"
                 subtitle=""
             />
-            <button onClick={() => navigate('/admin/manage-services-new')}>Nuevo servicio</button>
+
+            <div className="d-flex justify-content-center">
+                <button className="btn btn-dark btn-lg me-2 mb-5 rounded-1" onClick={() => navigate('/admin/manage-services-new')}>Nuevo servicio 🧑‍🔧</button>
+            </div>
+
             <AdminServicesList />
         </main>
     )
