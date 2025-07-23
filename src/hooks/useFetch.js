@@ -1,16 +1,10 @@
 import { useEffect, useState } from "react";
 import { fetchCall } from "../utils/fetchCall";
-import { useUser } from "../hooks/useUser";
 
-export const useFetch = (
-  endpoint,
-  method = "GET",
-  header = {},
-  body = {},
-  token = null
-) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+// CUSTOM HOOK: useFetch (usa token automáticamente si hay login)
+export const useFetch = (url, method = "GET", headers = {}, body = null) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const fetchData = async () => {
