@@ -1,24 +1,46 @@
-import React from 'react'
-  import { useState } from 'react'
-import { useNavigate } from "react-router";
+
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams } from "react-router";
 import { useForm } from '../../../hooks/useForm';
 import { fetchCall } from '../../../utils/fetchCall';
 
 // TODO: modificar formulario para editar
-export const EditInstallationForm = ({id}) => {
-  const { formData, handleChange, resetInput } = useForm({
+export const EditInstallationForm = () => {
+  // id de la instalación 
+  const { id } = useParams();
+  const { formData, setFormData, handleChange, resetInput } = useForm({
     name: "",
     adress: "",
     locality: "",
-    checkpoints: ""
+    checkpoints: "",
+    imageUrl: ""
   });
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [file, setFile] = useState(null);
   const urlBase = import.meta.env.VITE_API_URL_BASE;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    const getInstallationData = async () => {
+      try {
+        const data = await fetchCall(`${import.meta.env.VITE_API_URL_BASE}installations/${id}`);
+        setFormData({
+          name: data.nombre || "",
+          adress: data.direccion || "",
+          locality: data.localidad || "",
+          checkpoints: data.puntos_control || "",
+          imageUrl: data.image || ""
+        });
+      } catch (error) {
+        console.log(error)
+        throw error;
+      }
+    }
+    getInstallationData()
+  }, [id])
+
+  const handleSubmit = async (ev) => {
+    ev.preventDefault();
     setErrors({});
 
     const dataToSend = new FormData();
@@ -29,21 +51,21 @@ export const EditInstallationForm = ({id}) => {
     dataToSend.append("checkpoints", formData.checkpoints);
     if (file) {
       dataToSend.append("image", file);
+    } else {
+      dataToSend.append("imageUrl", formData.imageUrl);
     }
-
     try {
-      const data = await fetch(`${urlBase}installations`, {method: 'POST', body: dataToSend});
-
-      console.log("Instalación creada:", data);
-      resetInput();
+      const res = await fetch(`${urlBase}installations/${id}`, { method: 'PUT', body: dataToSend });
+      const data = await res.json();
+      console.log("Instalación editada:", data);
       setFile(null)
     } catch (error) {
-      console.log('Error al crear nueva instalación', error);
+      console.log('Error al editar instalación', error);
 
       if (error?.error) {
         setErrors(error.error); // errores validados por campo
       } else {
-        setErrors({ general: error.msg || "Error al crear nueva instalación" });
+        setErrors({ general: error.msg || "Error al editar instalación" });
       }
     }
   };
@@ -52,6 +74,7 @@ export const EditInstallationForm = ({id}) => {
     <section className="container d-flex flex-column align-items-center justify-content-center my-5 border border-1 rounded-3 py-4 px-4">
       <form className='w-100 my-3 px-4' onSubmit={handleSubmit} noValidate>
         <input type="hidden" value={id} />
+        <input type="hidden" name="imageUrl" value={formData.imageUrl} />
         {/* Nombre */}
         <div className="mb-3">
           <label htmlFor="name" className="fw-bold form-label">Nombre</label>

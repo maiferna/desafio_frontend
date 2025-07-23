@@ -17,8 +17,8 @@ export const CreateClientForm = ({setClients}) => {
   const [errors, setErrors] = useState({});
   const urlBase = import.meta.env.VITE_API_URL_BASE;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (ev) => {
+    ev.preventDefault();
     setErrors({});
 
     const formToSend = serializeForm();

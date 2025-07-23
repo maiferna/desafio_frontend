@@ -4,11 +4,12 @@ import { useForm } from '../../../hooks/useForm';
 import { fetchCall } from '../../../utils/fetchCall';
 
 
-export const CreateInstallationForm = ({ id }) => {
+export const CreateInstallationForm = ({ id, setInstallations }) => {
   const { formData, handleChange, resetInput } = useForm({
     name: "",
     adress: "",
-    locality: "",
+    latitude: "",
+    longitude: "",
     checkpoints: ""
   });
   const navigate = useNavigate();
@@ -16,26 +17,28 @@ export const CreateInstallationForm = ({ id }) => {
   const [file, setFile] = useState(null);
   const urlBase = import.meta.env.VITE_API_URL_BASE;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (ev) => {
+    ev.preventDefault();
     setErrors({});
 
     const dataToSend = new FormData();
     dataToSend.append("id", id);
     dataToSend.append("name", formData.name);
     dataToSend.append("adress", formData.adress);
-    dataToSend.append("locality", formData.locality);
+    dataToSend.append("latitude", formData.latitude);
+    dataToSend.append("longitude", formData.longitude);
     dataToSend.append("checkpoints", formData.checkpoints);
     if (file) {
       dataToSend.append("image", file);
     }
 
     try {
-      const data = await fetch(`${urlBase}installations`, {method: 'POST', body: dataToSend});
-
+      const res = await fetch(`${urlBase}installations`, {method: 'POST', body: dataToSend});
+      const data = await res.json();
       console.log("Instalación creada:", data);
       resetInput();
       setFile(null)
+      setInstallations(prev => [...prev, data]);
     } catch (error) {
       console.log('Error al crear nueva instalación', error);
 
@@ -81,19 +84,34 @@ export const CreateInstallationForm = ({ id }) => {
           {errors.role && <div className="text-danger">{errors.adress.msg}</div>}
         </div>
 
-        {/* Localidad */}
+        {/* Latitud */}
         <div className="mb-3">
-          <label htmlFor="locality" className="fw-bold form-label">Localidad</label>
+          <label htmlFor="latitude" className="fw-bold form-label">Latitud</label>
           <input
             type="text"
             className="form-control"
-            id="locality"
-            placeholder="Ingresa una localidad"
-            name="locality"
-            value={formData.locality}
+            id="latitude"
+            placeholder="Ingresa una latitud"
+            name="latitude"
+            value={formData.latitude}
             onChange={handleChange}
           />
-          {errors.email && <div className="text-danger">{errors.locality.msg}</div>}
+          {errors.email && <div className="text-danger">{errors.latitude.msg}</div>}
+        </div>
+
+        {/* Longitud */}
+        <div className="mb-3">
+          <label htmlFor="longitude" className="fw-bold form-label">Longitud</label>
+          <input
+            type="text"
+            className="form-control"
+            id="longitude"
+            placeholder="Ingresa una longitud"
+            name="longitude"
+            value={formData.longitude}
+            onChange={handleChange}
+          />
+          {errors.email && <div className="text-danger">{errors.longitude.msg}</div>}
         </div>
 
         {/* Puntos de control */}
@@ -109,20 +127,6 @@ export const CreateInstallationForm = ({ id }) => {
           />
           {errors.password && <div className="text-danger">{errors.tel.msg}</div>}
         </div>
-
-        {/* Detalles }
-        <div className="mb-4">
-          <label htmlFor="installationDetails" className="fw-bold form-label">Detalles sobre la instalación</label>
-          <textarea
-            className="form-control rounded-0"
-            id="installationDetails"
-            name="installationDetails"
-            placeholder="Detalles a tener en cuenta sobre la instalación..."
-            rows={5}
-            value={formData.installationDetails}
-            onChange={handleChange}
-          />
-        </div> */}
 
         {/* Imagen */}
         <div className="mb-3">

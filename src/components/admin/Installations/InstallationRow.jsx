@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router';
+import { fetchCall } from '../../../utils/fetchCall';
 
 export const InstallationRow = ({ installation, setInstallations }) => {
     const navigate = useNavigate();
