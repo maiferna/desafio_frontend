@@ -13,10 +13,10 @@ export const WorkerDashboardPage = () => {
         title="Panel de operario"
         subtitle=""
       />
-      <div className="d-flex justify-content-center mb-5 pb-5">
-        {/* <button type="button" className="btn btn-dark btn-lg me-2 rounded-1" onClick={() => navigate("/worker/dashboard")}>Ruta del día</button> */}
+      {/* <div className="d-flex justify-content-center mb-5 pb-5">
+        <button type="button" className="btn btn-dark btn-lg me-2 rounded-1" onClick={() => navigate("/worker/dashboard")}>Ruta del día</button>
         <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("make-report")}>Crear nuevo informe</button>
-      </div>
+      </div> */}
 
       <VisitsList title="Visitas asignadas"/>
       <RouteMap/>

@@ -1,3 +1,4 @@
+
 import { Navigate, Route, Routes } from "react-router"
 import { MainLayout } from "../components/ui/MainLayout"
 import { HomePage, LoginPage } from "../pages/public"
@@ -9,17 +10,16 @@ import {
   AdminManageVisitsPage, AdminCreateVisitPage
 } from "../pages/admin"
 
-
 export const AppRoutes = () => {
   return (
     <Routes>
-      {/* Agrupar todas las rutas bajo un layout común */}
+      {/* Layout común para todas las rutas */}
       <Route path='/' element={<MainLayout />}>
 
         {/* Rutas públicas */}
         <Route index element={<HomePage />} />
         <Route path='/login' element={<LoginPage />} />
-        <Route path='visit-detail' element={<WorkerVisitDetailPage />} />
+        <Route path='/visit-detail' element={<WorkerVisitDetailPage />} />
 
         {/* Rutas cliente (privadas) */}
         {/* <Route element={<PrivateRoute allowedRoles={['cliente']} />}> */}
@@ -43,6 +43,7 @@ export const AppRoutes = () => {
         <Route path='/admin'>
           <Route index element={<AdminDashboardPage />} />
           <Route path='planner' element={<AdminPlannerPage />} />
+          <Route path='edit-visit' element={<AdminEditVisitPage />} />
           <Route path='manage-workers' element={<AdminManageWorkersPage />} />
           <Route path='manage-clients' element={<AdminManageClientsPage />} />
           <Route path='manage-services' element={<AdminManageServicesPage />} />
@@ -54,10 +55,9 @@ export const AppRoutes = () => {
         </Route>
         {/* </Route> */}
 
-        {/* Ruta por defecto: redirigir a Home si no encuentra nada */}
+        {/* Redirección por defecto */}
         <Route path='/*' element={<Navigate to='/' />} />
-
       </Route>
     </Routes>
-  )
-}
+  );
+};

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import { HiredServiceCard } from "../../components/client/HiredServiceCard"
 import { HeaderHero } from "../../components/ui/HeaderHero"
 import { ServicesList } from "../../components/client/ServicesList";
+import { ClientProfileCard } from "../../components/client/ClientProfileCard";
 
 
 export const ClientDashboardPage = () => {
@@ -24,6 +25,7 @@ export const ClientDashboardPage = () => {
 
       <HiredServiceCard/>
       <ServicesList/>
+      <ClientProfileCard/>
     </main>
   )
 }

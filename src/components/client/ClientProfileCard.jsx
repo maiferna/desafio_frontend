@@ -30,8 +30,6 @@ export const ClientProfileCard = ({
           <p className="card-text text-muted mb-1">Tfn: {tfn}</p>
           <p className="card-text text-muted mb-1">Email: {email}</p>
           <p className="card-text text-muted">{password}</p>
-
-          <button className="btn btn-dark mt-4 rounded-1 w-100"> Actualizar información </button>
         </div>
       </article>
     </div>

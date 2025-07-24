@@ -14,7 +14,6 @@ export const RegisterForm = () => {
     id_cliente: ""
   });
 
-  const { register, token } = useUser();
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const urlBase = import.meta.env.VITE_API_URL_BASE;
@@ -27,20 +26,8 @@ export const RegisterForm = () => {
 
     try {
 
-      const data = await fetchCall(`${urlBase}auth/signup`, "POST", {}, formToSend, token);
-
-      // Guardar en contexto global
-      register(data.user, data.token);
+      const data = await fetchCall(`${urlBase}auth/signup`, "POST", {}, formToSend);
       navigate('/register');
-      // Redirigir según el role
-      // *******IMPORTANTE: CAMBIAR URL POR LA VÁLIDA Y ROLES*******
-      /* if (data.user.role === "admin") {
-        navigate("/admin-dashboard");
-      } else if (data.user.role === 'client') {
-        navigate("/client-dashboard");
-      } else if (data.user.role === 'technician') {
-        navigate('/technician-dashboard')
-      } */
 
     } catch (error) {
       console.log('ERROR REGISTRO', error);

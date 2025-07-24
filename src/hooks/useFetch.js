@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { fetchCall } from "../utils/fetchCall";
-import { useUser } from "../hooks/useUser";
 
 export const useFetch = (
   endpoint,
@@ -11,6 +10,7 @@ export const useFetch = (
 ) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+
   const [error, setError] = useState(null);
 
   const fetchData = async () => {
@@ -41,4 +41,6 @@ export const useFetch = (
   }, [endpoint]);
 
   return { data, setData, loading, error };
+
 };
+
