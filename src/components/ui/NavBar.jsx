@@ -58,6 +58,7 @@ export const NavBar = () => {
                                 <li><NavLink to="/admin/planner" className="nav-link">Planificación</NavLink></li>
                                 <li><NavLink to="/admin/manage-workers" className="nav-link">Gestionar Operarios</NavLink></li>
                                 <li><NavLink to="/admin/manage-clients" className="nav-link">Gestionar Clientes</NavLink></li>
+                                <li><NavLink to="/admin/manage-services" className="nav-link">Gestionar Servicios</NavLink></li>
                             </>
                         )}
 

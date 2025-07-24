@@ -4,12 +4,11 @@ import { MainLayout } from "../components/ui/MainLayout"
 import { HomePage, LoginPage } from "../pages/public"
 import { ClientDashboardPage, ClientHireServicePage, ClientProfilePage } from "../pages/client"
 import { WorkerCreateReportPage, WorkerDashboardPage, WorkerVisitDetailPage } from "../pages/worker"
-import { AdminDashboardPage, AdminEditVisitPage, AdminManageClientsPage, AdminManageWorkersPage, AdminPlannerPage } from "../pages/admin"
-import { AdminWebUserRegister } from "../pages/admin/AdminWebUserRegister"
-import { AdminManageClientDataPage } from "../pages/admin/AdminManageClientDataPage"
-import { EditClientForm } from "../components/admin/Clients/EditClientForm"
-import { AdminEditInstallationPage } from "../pages/admin/AdminEditInstallationPage"
-import { PrivateRoute } from "./PrivateRoute";
+import {
+  AdminDashboardPage, AdminEditVisitPage, AdminManageClientsPage, AdminManageWorkersPage,
+  AdminPlannerPage, AdminManageServicesPage, AdminEditServicePage, AdminNewServicePage,
+  AdminManageVisitsPage, AdminCreateVisitPage
+} from "../pages/admin"
 
 export const AppRoutes = () => {
   return (
@@ -22,30 +21,39 @@ export const AppRoutes = () => {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/visit-detail' element={<WorkerVisitDetailPage />} />
 
-        {/* Rutas protegidas para cliente */}
-        <Route path="/client" element={<PrivateRoute allowedRoles={["cliente"]} />}>
+        {/* Rutas cliente (privadas) */}
+        {/* <Route element={<PrivateRoute allowedRoles={['cliente']} />}> */}
+        <Route path="/client">
           <Route index element={<ClientDashboardPage />} />
           <Route path='hire-service' element={<ClientHireServicePage />} />
           <Route path='profile' element={<ClientProfilePage />} />
         </Route>
+        {/* </Route> */}
 
-        {/* Rutas protegidas para worker */}
-        <Route path="/worker" element={<PrivateRoute allowedRoles={["operario", "tecnico"]} />}>
+        {/* Rutas worker (worker)*/}
+        {/* <Route element={<PrivateRoute allowedRoles={['operario']} />}> */}
+        <Route path='/worker'>
           <Route index element={<WorkerDashboardPage />} />
           <Route path='make-report' element={<WorkerCreateReportPage />} />
         </Route>
+        {/* </Route> */}
 
-        {/* Rutas protegidas para admin */}
-        <Route path="/admin" element={<PrivateRoute allowedRoles={["admin"]} />}>
+        {/* Rutas admin (admin)*/}
+        {/* <Route element={<PrivateRoute allowedRoles={['administrador']} />}> */}
+        <Route path='/admin'>
           <Route index element={<AdminDashboardPage />} />
           <Route path='planner' element={<AdminPlannerPage />} />
           <Route path='edit-visit' element={<AdminEditVisitPage />} />
           <Route path='manage-workers' element={<AdminManageWorkersPage />} />
           <Route path='manage-clients' element={<AdminManageClientsPage />} />
-            <Route path='create-user' element={<AdminWebUserRegister />} />
-            <Route path='manage-clients/edit/:id' element={<AdminManageClientDataPage/>}/>
-            <Route path='manage-installation/edit/:id' element={<AdminEditInstallationPage/>}/>
+          <Route path='manage-services' element={<AdminManageServicesPage />} />
+          <Route path='manage-services-new' element={<AdminNewServicePage />} />
+          <Route path='manage-services-edit/:id' element={<AdminEditServicePage />} />
+          <Route path='manage-visits' element={<AdminManageVisitsPage />} />
+          <Route path='manage-visits-create' element={<AdminCreateVisitPage />} />
+          <Route path='manage-visits-edit/:id' element={<AdminEditVisitPage />} />
         </Route>
+        {/* </Route> */}
 
         {/* Redirección por defecto */}
         <Route path='/*' element={<Navigate to='/' />} />

@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { fetchCall } from "../utils/fetchCall";
 
-// CUSTOM HOOK: useFetch (usa token automáticamente si hay login)
-export const useFetch = (url, method = "GET", headers = {}, body = null) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
+export const useFetch = (
+  endpoint,
+  method = "GET",
+  header = {},
+  body = {},
+  token = null
+) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const [error, setError] = useState(null);
 
   const fetchData = async () => {
@@ -35,4 +41,6 @@ export const useFetch = (url, method = "GET", headers = {}, body = null) => {
   }, [endpoint]);
 
   return { data, setData, loading, error };
+
 };
+
