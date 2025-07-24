@@ -9,17 +9,18 @@ export const WorkerVisitDetailPage = () => {
 
   return (
     <main className="my-5 pb-5">
-      <HeaderHero 
+      <HeaderHero
         title="Detalles de la visita"
         subtitle=""
       />
 
       <div className="d-flex justify-content-center pb-5 gap-2">
         {/* <button type="button" className="btn btn-light btn-lg rounded-1" onClick={() => navigate("worker-panel")}>Volver</button> */}
-        <button type="button" className="btn btn-dark btn-lg rounded-1 w-100 mx-5" onClick={() => navigate("../make-report")}>Crear informe de visita 📋</button>
+
       </div>
 
-      <DetailedVisitCard/>
+      <DetailedVisitCard />
+      <button type="button" className="btn btn-dark btn-lg rounded-1 mx-5" onClick={() => navigate("../make-report")}>Crear informe de visita 📋</button>
 
     </main>
   )

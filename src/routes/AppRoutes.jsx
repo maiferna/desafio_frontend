@@ -1,9 +1,14 @@
-import { Navigate, Route, Routes } from "react-router";
-import { MainLayout } from "../components/ui/MainLayout";
-import { HomePage, LoginPage } from "../pages/public";
-import { ClientDashboardPage, ClientHireServicePage, ClientProfilePage } from "../pages/client";
-import { WorkerCreateReportPage, WorkerDashboardPage, WorkerVisitDetailPage } from "../pages/worker";
-import { AdminDashboardPage, AdminEditVisitPage, AdminManageClientsPage, AdminManageWorkersPage, AdminPlannerPage } from "../pages/admin";
+
+import { Navigate, Route, Routes } from "react-router"
+import { MainLayout } from "../components/ui/MainLayout"
+import { HomePage, LoginPage } from "../pages/public"
+import { ClientDashboardPage, ClientHireServicePage, ClientProfilePage } from "../pages/client"
+import { WorkerCreateReportPage, WorkerDashboardPage, WorkerVisitDetailPage } from "../pages/worker"
+import { AdminDashboardPage, AdminEditVisitPage, AdminManageClientsPage, AdminManageWorkersPage, AdminPlannerPage } from "../pages/admin"
+import { AdminWebUserRegister } from "../pages/admin/AdminWebUserRegister"
+import { AdminManageClientDataPage } from "../pages/admin/AdminManageClientDataPage"
+import { EditClientForm } from "../components/admin/Clients/EditClientForm"
+import { AdminEditInstallationPage } from "../pages/admin/AdminEditInstallationPage"
 import { PrivateRoute } from "./PrivateRoute";
 
 export const AppRoutes = () => {
@@ -37,6 +42,9 @@ export const AppRoutes = () => {
           <Route path='edit-visit' element={<AdminEditVisitPage />} />
           <Route path='manage-workers' element={<AdminManageWorkersPage />} />
           <Route path='manage-clients' element={<AdminManageClientsPage />} />
+            <Route path='create-user' element={<AdminWebUserRegister />} />
+            <Route path='manage-clients/edit/:id' element={<AdminManageClientDataPage/>}/>
+            <Route path='manage-installation/edit/:id' element={<AdminEditInstallationPage/>}/>
         </Route>
 
         {/* Redirección por defecto */}

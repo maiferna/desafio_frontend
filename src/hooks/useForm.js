@@ -11,8 +11,8 @@ export const useForm = (initialValue = {}) => {
             [name]: value,
         }));
     };
-
-    const resetInput = () => {
+    
+     const resetInput = () => {
         const resetState = {};
         for (const key in formData) {
             resetState[key] = "";
