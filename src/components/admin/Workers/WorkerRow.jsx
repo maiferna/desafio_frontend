@@ -1,12 +1,10 @@
-import React from 'react'
-
-export const WorkerRow = ({ 
-    nombre="Nombre",
-    id="id de operario", 
-    department="Departamento",
-    onDelete, 
-    onEdit  
-  }) => {
+export const WorkerRow = ({
+  nombre = "Nombre",
+  id = "id de operario",
+  department = "Departamento",
+  onDelete,
+  onEdit
+}) => {
 
   return (
     <article className="card rounded-1 overflow-hidden">

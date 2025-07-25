@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router';
 import { useFetch } from '../../../hooks/useFetch';
 import { fetchCall } from '../../../utils/fetchCall';
@@ -41,6 +40,4 @@ export const VisitRowAdmin = ({
       </div>
     </article>
   );
-
 }
-// 
