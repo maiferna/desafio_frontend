@@ -1,109 +1,75 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { InstallationMap } from './InstallationMap'
+import { ServiceFormRenderer } from '../admin/ServiceFormRenderer';
+import { fetchCall } from '../../utils/fetchCall';
 
-export const CreateReportForm = () => {
+export const CreateReportForm = ({ id }) => {
+  const [visitData, setVisitData] = useState(null);
+  const [serviceExecutions, setServiceExecutions] = useState([]);
+  const [selectedServicios, setSelectedServicios] = useState([]);
+
+  useEffect(() => {
+    const load = async () => {
+      const { data: visit } = await fetchCall(`${import.meta.env.VITE_API_URL_BASE}visits/details/${id}`);
+      const executions = await fetchCall(`${import.meta.env.VITE_API_URL_BASE}service-executions/visit/${id}`);
+      setVisitData(visit);
+      const serviciosConDatos = executions.map(exec => ({
+        id_servicio: exec.id_servicio,
+        executionId: exec.id_ejecucion_servicio,
+        id_visita: exec.id_visita,
+        data: exec.datos || {},
+        observaciones: exec.observaciones || "",
+      }));
+      setSelectedServicios(serviciosConDatos);
+      setServiceExecutions(executions);
+      console.log({ selectedServicios })
+    };
+    load();
+  }, [id]);
+
+  const handleFormChange = (serviceId, formData) => {
+    setSelectedServicios(prev =>
+      prev.map(s =>
+        s.id_servicio === serviceId ? { ...s, data: formData } : s
+      )
+    );
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    for (const { id_servicio, data, executionId, observaciones, id_visita } of selectedServicios) {
+      await fetchCall(`${import.meta.env.VITE_API_URL_BASE}service-executions/${executionId}`, "PUT", {}, {
+        id_visita: id_visita,
+        id_servicio: id_servicio,
+        datos: data,
+        observaciones
+      });
+    }
+
+    alert("Datos de la visita actualizados");
+  };
+
   return (
-    <section className="container d-flex flex-column align-items-center justify-content-center my-5 py-4 px-4 pt-5">
-      <h2 className="fw-bold">Rellenar informe de visita</h2>
-
-      <form className='w-100 my-4 pb-5 px-4'>{/* onSubmit={handleSubmit} */}
-        <div className="mb-4">
-          <label htmlFor="client" className="fw-bold form-label">Cliente</label>
-          <input
-            type="client"
-            className="form-control rounded-0"
-            id="client"
-            name="client"
-            placeholder="Cliente"
-            // value={}
-            // onChange={handleChange}
+    <form onSubmit={handleSubmit}>
+      <h2>Rellenar visita</h2>
+      {visitData && (
+        <p><strong>Instalación:</strong> {visitData.instalacion?.direccion}</p>
+      )}
+      {selectedServicios.map(({ id_servicio, executionId, data }) => (
+        <div key={executionId}>
+          <h4>Servicio #{id}</h4>
+          <ServiceFormRenderer
+            serviceId={id_servicio}
+            initialValues={data}
+            onFormChange={(formData) => handleFormChange(id_servicio, formData)}
           />
         </div>
+      ))}
 
-        <div className="mb-4">
-          <label htmlFor="serviceType" className="fw-bold form-label">Tipo de servicio</label>
-          <select
-              aria-label="Selecciona el tipo de servicio"
-              className="form-select mt-2"
-              id="serviceType"
-              name="serviceType"
-              // value={}
-              // onChange={handleChange}
-          >
-            <option value="">Elige uno</option>
-            <option value="legionela">Legionela</option>
-            <option value="plagas">Plagas</option>
-            <option value="cucarachas">Cucarachos</option>
-          </select>
-        </div>
+      <InstallationMap visit={visitData} />
 
-
-        <div className="mb-4">
-          <label htmlFor="checkpoints" className="fw-bold form-label">Nº de puntos de control</label>
-          <input
-            type="number"
-            className="form-control rounded-0"
-            id="checkpoints"
-            name="checkpoints"
-            defaultValue={10}
-            // value={}
-            // onChange={handleChange}
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="client" className="fw-bold form-label">Tiempo de desempeño </label>
-          <input
-            type="client"
-            className="form-control rounded-0"
-            id="client"
-            name="client"
-            placeholder="En minutos"
-            // value={}
-            // onChange={handleChange}
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="workDetails" className="fw-bold form-label">Detalles de la visita</label>
-          <textarea
-            className="form-control rounded-0"
-            id="workDetails"
-            name="workDetails"
-            placeholder="Otros datos a tener en cuenta sobre el trabajo realizado..."
-            rows={5}
-            // value={}
-            // onChange={handleChange}
-          />
-        </div>
-
-        <label className="fw-bold form-label">Nueva Visita</label>
-        <div className="form-check mb-2">
-          <input className="form-check-input" type="checkbox" value="" id="checkDefault"/>
-          <label className="form-check-label" htmlFor="checkDefault">
-            Requiere nueva visita
-          </label>
-        </div>
-
-        <div className="form-check mb-2">
-          <input className="form-check-input" type="checkbox" value="" id="checkDefault"/>
-          <label className="form-check-label" htmlFor="checkDefault">
-            Requiere más personal
-          </label>
-        </div>
-
-        <div className="form-check mb-4">
-          <input className="form-check-input" type="checkbox" value="" id="checkDefault"/>
-          <label className="form-check-label" htmlFor="checkDefault">
-            Requiere más medios
-          </label>
-        </div>
-
-
-        <button type="submit" className="btn btn-dark w-100 mt-4 mb-5 rounded-1">
-            Enviar mensaje
-        </button>
-        {/* {error && <p className="text-danger">{error.message || String(error)}</p>} */}
-      </form>
-    </section>
-  )
+      <button type="submit">Guardar datos de ejecución</button>
+    </form>
+  );
 }

@@ -1,13 +1,16 @@
+import { useParams } from "react-router";
 import { CreateReportForm } from "../../components/workers/CreateReportForm";
 
 
 
 
-export const WorkerCreateReportPage = () => {
 
+export const WorkerCreateReportPage = () => {
+  const { id } = useParams();
   return (
     <main>
-      <CreateReportForm/>
+      <CreateReportForm id={id} />
+
     </main>
   )
 }
