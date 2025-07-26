@@ -33,7 +33,7 @@ export const VisitRouteCard = ({ id, worker, visits = [], setRoutes, setVisits }
           Eliminar ruta
         </button>
       </div>
-
+      
       {visits.length === 0 ? (
         <p className="text-muted">No hay visitas asignadas a esta ruta.</p>
       ) : (
