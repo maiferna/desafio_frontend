@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router';
 import { HeaderHero } from '../../components/ui/HeaderHero';
 import { ContactForm } from '../../components/client/ContactForm';
+import { ChatbotWidget } from '../../components/public/ChatbotWidget';
 
 
 
@@ -20,7 +21,7 @@ export const HomePage = () => {
         <button type="button" className="btn btn-dark btn-lg me-2 mb-5 rounded-1" onClick={() => navigate("/login")}>Login</button>
         {/* <button type="button" className="btn btn-dark btn-lg" onClick={() => navigate("/user/my-resources")}>My collection</button> */}
       </div>
-      
+      <ChatbotWidget/>
       <section>
         <ContactForm/>
       </section>
