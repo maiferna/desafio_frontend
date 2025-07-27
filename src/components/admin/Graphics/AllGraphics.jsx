@@ -30,7 +30,7 @@ ChartJS.register(
     ChartDataLabels
 );
 
-export const AllGrafic = () => {
+export const AllGraphic = () => {
     // Componente reutilizable Card
     const Card = ({ titulo, children }) => (
         <div className="bg-white rounded-xl shadow-md p-4 flex flex-col">
