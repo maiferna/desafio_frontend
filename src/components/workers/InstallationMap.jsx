@@ -26,7 +26,7 @@ export const InstallationMap = ({ visit }) => {
 
                 const { data: savedPoints } = await fetchCall(`${import.meta.env.VITE_API_URL_BASE}control-points/installation/${visita.id_instalacion}`);
 
-                const mappedPoints = savedPoints.map(p => {
+                const mappedPoints = savedPoints?.map(p => {
                     const group = groups.find(g => g.id_grupo_punto_control === p.id_grupo_punto_control);
                     const coords = JSON.parse(p.coordenadas);
                     return {

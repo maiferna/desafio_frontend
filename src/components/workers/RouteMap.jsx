@@ -2,7 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useState } from 'react';
 
-export const RouteMap = ({visits}) => {
+export const RouteMap = ({ visits }) => {
   const [ruta, setRuta] = useState([]);
   const apiKeyMap = import.meta.env.VITE_API_KEY_MAP;
   const mapUrlBase = import.meta.env.VITE_MAP_API_URL_BASE;
@@ -17,7 +17,7 @@ export const RouteMap = ({visits}) => {
 
   useEffect(() => {
     const fetchRuta = async () => {
-          // Extraer solo las coordenadas para dibujar la línea del recorrido
+      // Extraer solo las coordenadas para dibujar la línea del recorrido
       const coords = paradas.map(p => [p.coords[1], p.coords[0]]); // OpenRoute usa [lng, lat]
 
       const response = await fetch(`${mapUrlBase}`, {
@@ -52,7 +52,7 @@ export const RouteMap = ({visits}) => {
       {paradas.map((parada) => (
         /* Marker añade marcadores con iconos */
         <Marker key={parada.id} position={parada.coords}>
-            {/* Popup muestra información al hacer click. Aquí meter la info de la API */}
+          {/* Popup muestra información al hacer click. Aquí meter la info de la API */}
           <Popup>{parada.name}</Popup>
         </Marker>
       ))}
