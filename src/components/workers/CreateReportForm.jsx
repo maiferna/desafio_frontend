@@ -8,6 +8,7 @@ export const CreateReportForm = ({ id }) => {
   const [serviceExecutions, setServiceExecutions] = useState([]);
   const [selectedServicios, setSelectedServicios] = useState([]);
 
+
   useEffect(() => {
     const load = async () => {
       const { data: visit } = await fetchCall(`${import.meta.env.VITE_API_URL_BASE}visits/details/${id}`);
@@ -35,8 +36,10 @@ export const CreateReportForm = ({ id }) => {
     );
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
 
     for (const { id_servicio, data, executionId, observaciones, id_visita } of selectedServicios) {
       await fetchCall(`${import.meta.env.VITE_API_URL_BASE}service-executions/${executionId}`, "PUT", {}, {
@@ -63,9 +66,11 @@ export const CreateReportForm = ({ id }) => {
             serviceId={id_servicio}
             initialValues={data}
             onFormChange={(formData) => handleFormChange(id_servicio, formData)}
+
           />
         </div>
       ))}
+
 
       <InstallationMap visit={visitData} />
 
@@ -73,3 +78,4 @@ export const CreateReportForm = ({ id }) => {
     </form>
   );
 }
+
