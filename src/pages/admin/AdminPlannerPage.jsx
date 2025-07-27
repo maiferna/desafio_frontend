@@ -4,6 +4,7 @@ import { VisitsListAdmin } from '../../components/admin/Visits/VisitsListAdmin'
 import { VisitsRoutes } from '../../components/admin/Visits/VisitsRoutes'
 import { CreateRouteForm } from '../../components/admin/Routes/CreateRouteForm'
 import { fetchCall } from '../../utils/fetchCall'
+import { GenerateRoutesButton } from '../../components/admin/Visits/GenerateRoutesButton'
 
 
 export const AdminPlannerPage = () => {
@@ -57,6 +58,12 @@ export const AdminPlannerPage = () => {
           <CreateRouteForm routes={routes} setRoutes={setRoutes} />
         )
       }
+
+      <GenerateRoutesButton
+        visits={visits}
+        setVisits={setVisits}
+        setRoutes={setRoutes}
+      />
 
       <VisitsRoutes
         visits={visits}
