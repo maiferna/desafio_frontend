@@ -14,20 +14,20 @@ export const CreateReportForm = () => {
             id="client"
             name="client"
             placeholder="Cliente"
-            // value={}
-            // onChange={handleChange}
+          // value={}
+          // onChange={handleChange}
           />
         </div>
 
         <div className="mb-4">
           <label htmlFor="serviceType" className="fw-bold form-label">Tipo de servicio</label>
           <select
-              aria-label="Selecciona el tipo de servicio"
-              className="form-select mt-2"
-              id="serviceType"
-              name="serviceType"
-              // value={}
-              // onChange={handleChange}
+            aria-label="Selecciona el tipo de servicio"
+            className="form-select mt-2"
+            id="serviceType"
+            name="serviceType"
+          // value={}
+          // onChange={handleChange}
           >
             <option value="">Elige uno</option>
             <option value="legionela">Legionela</option>
@@ -45,8 +45,8 @@ export const CreateReportForm = () => {
             id="checkpoints"
             name="checkpoints"
             defaultValue={10}
-            // value={}
-            // onChange={handleChange}
+          // value={}
+          // onChange={handleChange}
           />
         </div>
 
@@ -58,8 +58,8 @@ export const CreateReportForm = () => {
             id="client"
             name="client"
             placeholder="En minutos"
-            // value={}
-            // onChange={handleChange}
+          // value={}
+          // onChange={handleChange}
           />
         </div>
 
@@ -71,28 +71,28 @@ export const CreateReportForm = () => {
             name="workDetails"
             placeholder="Otros datos a tener en cuenta sobre el trabajo realizado..."
             rows={5}
-            // value={}
-            // onChange={handleChange}
+          // value={}
+          // onChange={handleChange}
           />
         </div>
 
         <label className="fw-bold form-label">Nueva Visita</label>
         <div className="form-check mb-2">
-          <input className="form-check-input" type="checkbox" value="" id="checkDefault"/>
+          <input className="form-check-input" type="checkbox" value="" id="checkDefault" />
           <label className="form-check-label" htmlFor="checkDefault">
             Requiere nueva visita
           </label>
         </div>
 
         <div className="form-check mb-2">
-          <input className="form-check-input" type="checkbox" value="" id="checkDefault"/>
+          <input className="form-check-input" type="checkbox" value="" id="checkDefault" />
           <label className="form-check-label" htmlFor="checkDefault">
             Requiere más personal
           </label>
         </div>
 
         <div className="form-check mb-4">
-          <input className="form-check-input" type="checkbox" value="" id="checkDefault"/>
+          <input className="form-check-input" type="checkbox" value="" id="checkDefault" />
           <label className="form-check-label" htmlFor="checkDefault">
             Requiere más medios
           </label>
@@ -100,7 +100,7 @@ export const CreateReportForm = () => {
 
 
         <button type="submit" className="btn btn-dark w-100 mt-4 mb-5 rounded-1">
-            Enviar mensaje
+          Enviar mensaje
         </button>
         {/* {error && <p className="text-danger">{error.message || String(error)}</p>} */}
       </form>
