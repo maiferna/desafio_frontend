@@ -1,12 +1,12 @@
-import React from 'react'
+
 import { useNavigate } from 'react-router';
 import { fetchCall } from '../../../utils/fetchCall';
 
 export const InstallationRow = ({ installation, setInstallations }) => {
     const navigate = useNavigate();
-    const onEditInstallation = () => {
+    /* const onEditInstallation = () => {
         navigate(`/admin/manage-installation/edit/${installation.id_instalacion}`);
-    }
+    } */
     const onDeleteInstallation = () => {
         fetchCall(`${import.meta.env.VITE_API_URL_BASE}installations/${installation.id_instalacion}`, "DELETE")
         setInstallations(prevData => prevData.filter(i => i.id_instalacion !== installation.id_instalacion));
@@ -22,7 +22,7 @@ export const InstallationRow = ({ installation, setInstallations }) => {
 
                 <div className="d-inline-flex flex-column gap-2">
                     <button onClick={onDeleteInstallation} className="btn btn-outline-danger btn-sm">Borrar instalación</button>
-                    <button onClick={onEditInstallation} className="btn btn-dark btn-sm">Editar info</button>
+                    {/* <button onClick={onEditInstallation} className="btn btn-dark btn-sm">Editar info</button> */}
                 </div>
             </div>
         </article>
