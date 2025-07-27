@@ -17,7 +17,7 @@ export const VisitRow = ({ visitId, place, client }) => {
         <button
           type="button"
           className="btn btn-dark btn-sm rounded-1"
-          onClick={() => navigate("../visit-detail")}
+          onClick={() => navigate(`/worker/make-report/${visitId}`)}
         >
           Ver detalles
         </button>

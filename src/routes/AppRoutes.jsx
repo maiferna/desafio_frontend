@@ -41,11 +41,12 @@ export const AppRoutes = () => {
           </Route>
         </Route>
 
+
         {/* Rutas técnico (privadas) */}
         <Route element={<PrivateRoute allowedRoles={['tecnico']} />}>
           <Route path='/worker'>
             <Route index element={<WorkerDashboardPage />} />
-            <Route path='make-report' element={<WorkerCreateReportPage />} />
+            <Route path='make-report/:id' element={<WorkerCreateReportPage />} />
           </Route>
         </Route>
 
