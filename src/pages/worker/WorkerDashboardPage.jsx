@@ -54,8 +54,10 @@
 //     </section>
 //   );
 // };
+import { HeaderHero } from '../../components/ui/HeaderHero'
 import { useWorkerVisits } from "../../hooks/useWorkerVisits";
 import { VisitsList } from "../../components/workers/VisitsList";
+import { RouteMap } from "../../components/workers/RouteMap";
 
 export const WorkerDashboardPage = () => {
   const { visits, loading } = useWorkerVisits();
@@ -63,13 +65,20 @@ export const WorkerDashboardPage = () => {
   if (loading) return <p>Cargando visitas asignadas...</p>;
 
   return (
-    <section className="container my-4">
-      <h2 className="fw-bold mb-3">Mis visitas asignadas</h2>
-      {visits.length === 0 ? (
-        <p>No tienes visitas asignadas.</p>
-      ) : (
-        <VisitsList visits={visits} />
-      )}
-    </section>
+    <main className="my-5 pb-5">
+       <HeaderHero
+        title="Panel de operario"
+        subtitle=""
+      />
+      <section className="container my-4">
+        {visits.length === 0 ? (
+          <p>No tienes visitas asignadas.</p>
+        ) : (
+          <VisitsList visits={visits} />
+        )}
+
+        <RouteMap visits={visits} />
+      </section>
+    </main>
   );
 };
