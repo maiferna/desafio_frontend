@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchCall } from '../../utils/fetchCall';
 import { ServiceFormRenderer } from './ServiceFormRenderer';
 
@@ -19,11 +19,13 @@ export const EditVisit = ({ id }) => {
             setServicios(servs);
 
             if (id) {
-                const { data: visitData } = await fetchCall(`${import.meta.env.VITE_API_URL_BASE}visits/details/${id}`);
+                const visitData = await fetchCall(`${import.meta.env.VITE_API_URL_BASE}visits/${id}`);
                 const exes = await fetchCall(`${import.meta.env.VITE_API_URL_BASE}service-executions/visit/${id}`);
                 setServiceExecution(exes);
-                console.log({ exes })
+
+                // 👇 Aquí usamos directamente el id_instalacion de la visita
                 setSelectedInstalacion(visitData.id_instalacion);
+
                 const serviciosConDatos = exes.map(exec => ({
                     id: exec.id_servicio,
                     data: exec.datos || {}
@@ -61,30 +63,13 @@ export const EditVisit = ({ id }) => {
                 estado: "pendiente"
             });
 
-            // Mapa de ejecuciones actuales en la base de datos (antes de editar)
-            const existingMap = new Map(
-                serviceExecutions.map(exec => [exec.id_servicio, exec])
-            );
-
-            // IDs de servicios actuales tras edición
+            const existingMap = new Map(serviceExecutions.map(exec => [exec.id_servicio, exec]));
             const currentIds = selectedServicios.map(s => s.id);
 
-            // 1. EDITAR: servicios que ya existían, siguen existiendo y tienen datos nuevos
-            const toUpdate = selectedServicios.filter(({ id, data }) =>
-                existingMap.has(id)
-            );
+            const toUpdate = selectedServicios.filter(({ id }) => existingMap.has(id));
+            const toDelete = serviceExecutions.filter(exec => !currentIds.includes(exec.id_servicio));
+            const toCreate = selectedServicios.filter(({ id }) => !existingMap.has(id));
 
-            // 2. ELIMINAR: ejecuciones que estaban antes pero ya no están seleccionadas
-            const toDelete = serviceExecutions.filter(exec =>
-                !currentIds.includes(exec.id_servicio)
-            );
-
-            // 3. CREAR: servicios que no estaban antes
-            const toCreate = selectedServicios.filter(({ id }) =>
-                !existingMap.has(id)
-            );
-
-            // Actualizar ejecuciones existentes
             for (const { id, data } of toUpdate) {
                 const exec = existingMap.get(id);
                 await fetchCall(`${import.meta.env.VITE_API_URL_BASE}service-executions/${exec.id_ejecucion_servicio}`, "PUT", {}, {
@@ -95,12 +80,10 @@ export const EditVisit = ({ id }) => {
                 });
             }
 
-            // Eliminar ejecuciones quitadas
             for (const exec of toDelete) {
                 await fetchCall(`${import.meta.env.VITE_API_URL_BASE}service-executions/${exec.id_ejecucion_servicio}`, "DELETE");
             }
 
-            // Crear nuevas ejecuciones
             for (const { id: id_servicio, data } of toCreate) {
                 await fetchCall(`${import.meta.env.VITE_API_URL_BASE}service-executions`, "POST", {}, {
                     id_visita: id,
@@ -118,7 +101,6 @@ export const EditVisit = ({ id }) => {
             });
 
             for (const { id: id_servicio, data } of selectedServicios) {
-
                 await fetchCall(`${import.meta.env.VITE_API_URL_BASE}service-executions`, "POST", {}, {
                     id_visita: visita.id_visita,
                     id_servicio,
