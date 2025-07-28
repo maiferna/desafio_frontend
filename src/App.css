@@ -1,3 +1,4 @@
+/* Color de botones */
 .btn-dark {
   background-color: #004441 !important;
   border-color: #003532 !important;
@@ -22,23 +23,40 @@
 }
 
 
+.btn-outline-warning {
+  border-color: #e0c187 !important;
+  color: #d8ae5e !important;
+}
+
+.btn-outline-warning:hover {
+  background-color: #f2dbb1 !important;
+  border-color: #edd29f !important;
+  color: #000000 !important;
+}
+
+
 .btn-outline-primary{
   /* background-color: #ff0000 !important; */
-  border-color: #68b0bd !important;
-  color: #68b0bd  !important;
+  border-color: #8dab7e !important;
+  color: #728867  !important;
 }
 
 .btn-outline-primary:hover {
-  background-color: #68b0bd  !important;
-  border-color: #68b0bd  !important;
-  color: white !important;
+  background-color: #ddf7d0  !important;
+  border-color: #cfe9c2  !important;
+  color: rgb(36, 36, 36) !important;
 }
 
 .btn-check:checked + .btn-outline-primary {
- background-color: #68b0bd  !important;
-  border-color: #68b0bd  !important;
-  color: white !important;
- */
+  background-color: #ddf7d0  !important;
+  border-color: #cfe9c2  !important;
+  color: rgb(36, 36, 36) !important;
+}
+
+
+
+
+
 
  /* Botón flotante del chat */
 .chat-toggle-btn {
@@ -100,3 +118,4 @@
   max-width: 1000px;
   margin: 0 auto;
 }
+

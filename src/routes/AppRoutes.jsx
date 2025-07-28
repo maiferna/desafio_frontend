@@ -14,7 +14,7 @@ import { WorkerCreateReportPage, WorkerDashboardPage, WorkerVisitDetailPage } fr
 import {
   AdminDashboardPage, AdminEditVisitPage, AdminManageClientsPage, AdminManageWorkersPage,
   AdminPlannerPage, AdminManageServicesPage, AdminEditServicePage, AdminNewServicePage,
-  AdminManageVisitsPage, AdminCreateVisitPage
+  AdminManageVisitsPage, AdminCreateVisitPage, AdminWebUserRegister
 } from "../pages/admin";
 
 // Protección de rutas
@@ -54,8 +54,9 @@ export const AppRoutes = () => {
         <Route element={<PrivateRoute allowedRoles={['admin']} />}>
           <Route path='/admin'>
             <Route index element={<AdminDashboardPage />} />
-            <Route path='planner' element={<AdminPlannerPage />} />
-            <Route path='edit-visit' element={<AdminEditVisitPage />} />
+
+            <Route path='manage-routes' element={<AdminPlannerPage />} />
+
             <Route path='manage-workers' element={<AdminManageWorkersPage />} />
             <Route path='manage-clients' element={<AdminManageClientsPage />} />
             <Route path='manage-clients/edit/:id' element={<AdminManageClientDataPage/>}/>
@@ -65,8 +66,15 @@ export const AppRoutes = () => {
             <Route path='manage-visits' element={<AdminManageVisitsPage />} />
             <Route path='manage-visits-create' element={<AdminCreateVisitPage />} />
             <Route path='manage-visits-edit/:id' element={<AdminEditVisitPage />} />
+            <Route path='manage-users' element={<AdminWebUserRegister />} />
           </Route>
         </Route>
+
+        {/* <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-routes")}>Gestionar rutas </button>
+        <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-workers")}>Gestionar operarios</button>
+        <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-services")}>Gestionar servicios</button>
+        <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-clients")}>Gestionar clientes</button>
+        <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-users")}>Gestionar usuarios de la web</button> */}
 
         {/* Redirección por defecto */}
         <Route path='/*' element={<Navigate to='/' />} />

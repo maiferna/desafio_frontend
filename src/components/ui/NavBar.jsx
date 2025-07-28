@@ -40,8 +40,8 @@ export const NavBar = () => {
                         {user?.role === "cliente" && (
                             <>
                                 <li><NavLink to="/client" className="nav-link">Panel de Cliente</NavLink></li>
-                                <li><NavLink to="/client/hire-service" className="nav-link">Contratar servicio</NavLink></li>
-                                <li><NavLink to="/client/profile" className="nav-link">Datos de mi empresa</NavLink></li>
+                                {/* <li><NavLink to="/client/hire-service" className="nav-link">Contratar servicio</NavLink></li>
+                                <li><NavLink to="/client/profile" className="nav-link">Datos de mi empresa</NavLink></li> */}
                             </>
                         )}
 
@@ -56,12 +56,12 @@ export const NavBar = () => {
                             <>
                                 <li><NavLink to="/admin" className="nav-link">Panel de Administrador</NavLink></li>
                           
-                                {/* <li><NavLink to="/admin/planner" className="nav-link">Planificación</NavLink></li> */}
-                                <li><NavLink to="/admin/manage-visits" className="nav-link">Gestionar Visitas</NavLink></li>
-
+                                {/* <li><NavLink to="/admin/manage-visits" className="nav-link">Gestionar Visitas</NavLink></li> */}
+                                <li><NavLink to="/admin/manage-routes" className="nav-link">Gestionar Rutas</NavLink></li>
                                 <li><NavLink to="/admin/manage-workers" className="nav-link">Gestionar Operarios</NavLink></li>
                                 <li><NavLink to="/admin/manage-clients" className="nav-link">Gestionar Clientes</NavLink></li>
                                 <li><NavLink to="/admin/manage-services" className="nav-link">Gestionar Servicios</NavLink></li>
+                                <li><NavLink to="/admin/manage-users" className="nav-link">Gestionar Usuarios</NavLink></li>
                             </>
                         )}
 
