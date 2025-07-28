@@ -19,6 +19,7 @@ import {
 
 // Protección de rutas
 import { PrivateRoute } from "./PrivateRoute";
+import { AdminManageClientDataPage } from "../pages/admin/AdminManageClientDataPage";
 
 export const AppRoutes = () => {
   return (
@@ -40,11 +41,12 @@ export const AppRoutes = () => {
           </Route>
         </Route>
 
+
         {/* Rutas técnico (privadas) */}
         <Route element={<PrivateRoute allowedRoles={['tecnico']} />}>
           <Route path='/worker'>
             <Route index element={<WorkerDashboardPage />} />
-            <Route path='make-report' element={<WorkerCreateReportPage />} />
+            <Route path='make-report/:id' element={<WorkerCreateReportPage />} />
           </Route>
         </Route>
 
@@ -56,6 +58,7 @@ export const AppRoutes = () => {
             <Route path='edit-visit' element={<AdminEditVisitPage />} />
             <Route path='manage-workers' element={<AdminManageWorkersPage />} />
             <Route path='manage-clients' element={<AdminManageClientsPage />} />
+            <Route path='manage-clients/edit/:id' element={<AdminManageClientDataPage/>}/>
             <Route path='manage-services' element={<AdminManageServicesPage />} />
             <Route path='manage-services-new' element={<AdminNewServicePage />} />
             <Route path='manage-services-edit/:id' element={<AdminEditServicePage />} />

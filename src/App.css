@@ -1,45 +1,43 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.btn-dark {
+  background-color: #004441 !important;
+  border-color: #003532 !important;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.btn-dark:hover {
+  background-color: #02756f !important;
+  border-color: #00615c!important;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.btn-outline-danger {
+  /* background-color: #ff0000 !important; */
+  border-color: #ff5100 !important;
+  color: #ff5100 !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.btn-outline-danger:hover {
+  background-color: #ff4d00 !important;
+  border-color: #ff4d00 !important;
+  color: white !important;
 }
 
-.card {
-  padding: 2em;
+
+.btn-outline-primary{
+  /* background-color: #ff0000 !important; */
+  border-color: #68b0bd !important;
+  color: #68b0bd  !important;
 }
 
-.read-the-docs {
-  color: #888;
+.btn-outline-primary:hover {
+  background-color: #68b0bd  !important;
+  border-color: #68b0bd  !important;
+  color: white !important;
 }
+
+.btn-check:checked + .btn-outline-primary {
+ background-color: #68b0bd  !important;
+  border-color: #68b0bd  !important;
+  color: white !important;
  */
 
  /* Botón flotante del chat */
@@ -98,4 +96,7 @@
 
 .map-container {
   height: 400px;
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
 }

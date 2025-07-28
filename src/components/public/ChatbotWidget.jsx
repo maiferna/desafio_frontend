@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { io } from 'socket.io-client';
 import { Chatbot } from './Chatbot';
+import cucarachatIcon from '../../assets/img/Cucarachat.png';
+
 
 export const ChatbotWidget = () => {
-  // Para comprobar si el chat está abierto o no
+    // Para comprobar si el chat está abierto o no
     const [isOpen, setIsOpen] = useState(false);
     const [socket, setSocket] = useState(null);
     const [messages, setMessages] = useState([{
@@ -64,7 +66,7 @@ export const ChatbotWidget = () => {
             {/* Botón chat */}
             <button className="chat-toggle-btn" onClick={handleClick}>
                 <img
-                    src="src/assets/img/Cucarachat.png"
+                    src={cucarachatIcon}
                     alt="Chat"
                     className="chat-icon-img shadow"
                 />

@@ -6,7 +6,7 @@ export const VisitsListAdmin = ({ title = "title", visits, setVisits }) => {
   const unassignedVisits = visits?.filter(visit => !visit.id_ruta) || [];
 
   return (
-    <section className="px-5 py-4 pt-0 mb-5 container justify-content-center align-items-center gap-1">
+    <section className="px-5 py-4 pt-0 mb-5 container justify-content-center align-items-center">
       <h3 className="fw-bold my-3 px-sm-1 px-md-0">Lista de visitas</h3>
 
       <FilterByBar />
