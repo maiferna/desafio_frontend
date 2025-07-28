@@ -5,9 +5,9 @@ export const GraphicInsectosArrastrantes = ({ datos }) => {
     const totalInsectos = datos.reduce((acc, punto) => acc + punto.total, 0);
 
     const backgroundColor = datos.map(punto => {
-        if (punto.estado === 'intacto') return '#00ff00';      // verde
-        if (punto.estado === 'comido') return '#ff0000';       // rojo
-        if (punto.estado === 'deteriorado') return '#ffff00';  // amarillo
+        if (punto.estado === 'intacto') return '#02756f';      // verde
+        if (punto.estado === 'comido') return '#ff5100';       // rojo
+        if (punto.estado === 'deteriorado') return '#68b0bd';  // amarillo
         return '#ccc';
     });
 
