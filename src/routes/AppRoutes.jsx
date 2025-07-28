@@ -71,12 +71,6 @@ export const AppRoutes = () => {
           </Route>
         </Route>
 
-        {/* <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-routes")}>Gestionar rutas </button>
-        <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-workers")}>Gestionar operarios</button>
-        <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-services")}>Gestionar servicios</button>
-        <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-clients")}>Gestionar clientes</button>
-        <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-users")}>Gestionar usuarios de la web</button> */}
-
         {/* Redirección por defecto */}
         <Route path='/*' element={<Navigate to='/' />} />
       </Route>

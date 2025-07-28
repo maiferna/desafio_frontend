@@ -10,12 +10,12 @@ export const AdminManageServicesPage = () => {
         <main className="my-5 pb-5">
             <HeaderHero
                 title="Gestión de servicios"
-                subtitle=""
+                subtitle="Revisión y creación de servicios"
             />
 
             <div className="d-flex justify-content-center">
-                <button className="btn btn-dark btn-lg me-2 mb-5 rounded-1 d-flex gap-3 px-4" onClick={() => navigate('/admin/manage-services-new')}>
-                    <i className="bi bi-bug"></i> Nuevo servicio 
+                <button className="btn btn-dark btn-lg me-2 mb-5 rounded-1 px-4" onClick={() => navigate('/admin/manage-services-new')}>
+                    Nuevo servicio <i className="bi bi-tools ms-2"></i> 
                 </button>
             </div>
 

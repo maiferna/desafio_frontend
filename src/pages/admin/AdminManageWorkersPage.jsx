@@ -10,9 +10,13 @@ export const AdminManageWorkersPage = () => {
     <main>
       <HeaderHero 
         title="Gestionar operarios" 
-        subtitle=""/>
+        subtitle="Crear y editar operarios"/>
       {/* <RegisterForm userToEdit={userToEdit} setUserToEdit={setUserToEdit} /> */}
+
+      <RegisterForm userToEdit={userToEdit} setUserToEdit={setUserToEdit} />
       <WorkersList setUserToEdit={setUserToEdit} />
     </main>
   );
 };
+
+

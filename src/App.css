@@ -47,6 +47,20 @@
   color: rgb(36, 36, 36) !important;
 }
 
+
+.btn-primary{
+  background-color: #ddf7d0  !important;
+  border-color: #cfe9c2  !important;
+  color: rgb(36, 36, 36) !important;
+}
+
+.btn-primary:hover {
+  background-color: #efffe7  !important;
+  border-color: #ddf7d0  !important;
+  color: rgb(36, 36, 36) !important;
+}
+
+
 .btn-check:checked + .btn-outline-primary {
   background-color: #ddf7d0  !important;
   border-color: #cfe9c2  !important;

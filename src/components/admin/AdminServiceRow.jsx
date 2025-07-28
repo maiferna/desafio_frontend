@@ -26,7 +26,7 @@ export const AdminServiceRow = ({ service, setData }) => {
                     <button className="btn btn-sm btn-outline-danger rounded-1 align-self-start d-flex gap-2" onClick={onDeleteService}>
                         Eliminar servicio <i className="bi bi-trash-fill"></i>
                     </button>
-                    <button className="btn btn-sm btn-dark rounded-1 align-self-start d-flex gap-2" onClick={onEditService}>
+                    <button className="btn btn-sm btn-primary rounded-1 align-self-start d-flex gap-2" onClick={onEditService}>
                         Editar servicio <i className="bi bi-gear-fill"></i>
                     </button>
                 </div>

@@ -26,7 +26,7 @@ export const AdminManageClientsPage = () => {
     <main>
       <HeaderHero
         title="Gestionar clientes"
-        subtitle="Crear nuevo cliente"
+        subtitle="Crear y editar clientes"
       />
       <CreateClientForm setClients={setClients}/>
 
