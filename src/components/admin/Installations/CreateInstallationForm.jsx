@@ -10,6 +10,7 @@ export const CreateInstallationForm = ({ id, setInstallations }) => {
     adress: "",
     latitude: "",
     longitude: "",
+    locality: "",
     checkpoints: ""
   });
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ export const CreateInstallationForm = ({ id, setInstallations }) => {
     dataToSend.append("adress", formData.adress);
     dataToSend.append("latitude", formData.latitude);
     dataToSend.append("longitude", formData.longitude);
+    dataToSend.append("locality", formData.locality);
     dataToSend.append("checkpoints", formData.checkpoints);
     if (file) {
       dataToSend.append("image", file);
@@ -84,6 +86,21 @@ export const CreateInstallationForm = ({ id, setInstallations }) => {
             onChange={handleChange}
           />
           {errors.role && <div className="text-danger">{errors.adress.msg}</div>}
+        </div>
+
+        {/* Localidad */}
+        <div className="mb-3">
+          <label htmlFor="locality" className="fw-bold form-label">Localidad</label>
+          <input
+            type="text"
+            className="form-control"
+            id="locality"
+            placeholder="Ingresa una localidad"
+            name="locality"
+            value={formData.locality}
+            onChange={handleChange}
+          />
+          {errors.role && <div className="text-danger">{errors.locality.msg}</div>}
         </div>
 
         {/* Latitud */}

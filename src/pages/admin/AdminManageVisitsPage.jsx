@@ -1,4 +1,3 @@
-import React from 'react'
 import { HeaderHero } from '../../components/ui/HeaderHero'
 import { useNavigate } from 'react-router';
 import { VisitsListAdmin } from '../../components/admin/Visits/VisitsListAdmin';
