@@ -14,7 +14,9 @@ export const AdminManageServicesPage = () => {
             />
 
             <div className="d-flex justify-content-center">
-                <button className="btn btn-dark btn-lg me-2 mb-5 rounded-1" onClick={() => navigate('/admin/manage-services-new')}>Nuevo servicio 🧑‍🔧</button>
+                <button className="btn btn-dark btn-lg me-2 mb-5 rounded-1 d-flex gap-3 px-4" onClick={() => navigate('/admin/manage-services-new')}>
+                    <i className="bi bi-bug"></i> Nuevo servicio 
+                </button>
             </div>
 
             <AdminServicesList />

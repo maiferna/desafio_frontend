@@ -135,7 +135,9 @@ export const EditService = ({ id }) => {
                         <option value="bool">Tipo Booleano</option>
                         <option value="number">Tipo Número</option>
                     </select>
-                    <button type="button" className="btn btn-light w-100 mt-2 rounded-1" onClick={handleAddField}>Añadir campo a servicio ➕</button>
+                    <button type="button" className="btn btn-light w-100 mt-2 rounded-1 d-flex gap-2 justify-content-center" onClick={handleAddField}>
+                        <i className="bi bi-plus-circle"></i> Añadir campo a servicio 
+                    </button>
                 </div>
 
                 <ul className="list-group mb-5 px-2">
@@ -153,7 +155,7 @@ export const EditService = ({ id }) => {
                     ))}
                 </ul>
 
-                <button type="submit" className="btn btn-dark w-100 rounded-1">Guardar cambios</button>
+                <button type="submit" className="btn btn-lg btn-dark w-100 rounded-1">Guardar cambios</button>
                 
                 {successMessage && (
                     <div className="alert alert-success text-center w-100 mt-3" role="alert">

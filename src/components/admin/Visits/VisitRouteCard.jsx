@@ -20,14 +20,14 @@ export const VisitRouteCard = ({ id, worker, visits = [], setRoutes, setVisits }
   };
 
   return (
-    <article className="list-group border border-secondary-subtle p-3 mb-3">
+    <article className="list-group border p-4 mb-3 ml">
       <div className="d-flex justify-content-between align-items-center mb-2">
         <div>
-          <p className="fw-bold fs-5 mb-0">Ruta {id}</p>
+          <p className="fw-bold fs-4 mb-0">Ruta {id}</p>
           <p className="mb-2">Operario asignado: {worker}</p>
         </div>
         <button
-          className="btn btn-outline-danger btn-sm"
+          className="btn btn-outline-danger rounded-1"
           onClick={handleDeleteRoute}
         >
           Eliminar ruta
@@ -38,7 +38,7 @@ export const VisitRouteCard = ({ id, worker, visits = [], setRoutes, setVisits }
         <p className="text-muted">No hay visitas asignadas a esta ruta.</p>
       ) : (
         visits.map(visit => (
-          <div className="list-group-item rounded-3" key={`visit-ruta-${visit.id_visita}`}>
+          <div className=" rounded-1" key={`visit-ruta-${visit.id_visita}`}>
             <VisitRowAdmin visit={visit} setVisits={setVisits} />
           </div>
         ))

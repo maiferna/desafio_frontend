@@ -35,7 +35,7 @@ export const AdminPlannerPage = () => {
     <main className="mb-5 pb-5">
       <HeaderHero
         title="Gestionar rutas"
-        subtitle=""
+        subtitle="Control de visitas y rutas"
       />
       {/* <div className="d-flex justify-content-center gap-2">
         <button type="button" className="btn btn-dark btn-lg mb-5 rounded-1" onClick={() => navigate("/planner")}>Lista de visitas</button>
@@ -43,7 +43,7 @@ export const AdminPlannerPage = () => {
       </div> */}
 
       <div className="d-flex justify-content-center">
-                <button className="btn btn-dark btn-lg me-2 mb-5 rounded-1" onClick={() => navigate('/admin/manage-visits-create')}>
+                <button className="btn btn-dark btn-lg me-2 mb-5 rounded-1 display px-4" onClick={() => navigate('/admin/manage-visits-create')}>
                     Nueva visita <i class="bi bi-house-door"></i> 
                 </button>
       </div>
@@ -59,7 +59,7 @@ export const AdminPlannerPage = () => {
           className="btn btn-lg btn-dark mb-3 rounded-1"
           onClick={() => setShowForm(prev => !prev)}
         >
-          {showForm ? "Ocultar formulario" : "Crear una ruta"}
+          {showForm ? "Ocultar formulario" : "Crear una ruta 🗺️"}
         </button>
       </div>
       {

@@ -23,8 +23,12 @@ export const AdminServiceRow = ({ service, setData }) => {
                 </div>
 
                 <div className="d-flex gap-2">
-                    <button className="btn btn-sm btn-outline-danger rounded-1 align-self-start" onClick={onDeleteService}>Eliminar servicio </button>
-                    <button className="btn btn-sm btn-dark rounded-1 align-self-start" onClick={onEditService}>Editar servicio ⚙️</button>
+                    <button className="btn btn-sm btn-outline-danger rounded-1 align-self-start d-flex gap-2" onClick={onDeleteService}>
+                        Eliminar servicio <i className="bi bi-trash-fill"></i>
+                    </button>
+                    <button className="btn btn-sm btn-dark rounded-1 align-self-start d-flex gap-2" onClick={onEditService}>
+                        Editar servicio <i className="bi bi-gear-fill"></i>
+                    </button>
                 </div>
             </div>
         </article>
