@@ -67,7 +67,7 @@ export const ChatbotWidget = () => {
     return (
         <>
             {/* Botón chat */}
-            <button className="chat-toggle-btn" onClick={handleClick}>
+            <button className="chat-toggle-btn mb-4" onClick={handleClick}>
                 <img
                     src={cucarachatIcon}
                     alt="Chat"

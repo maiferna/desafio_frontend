@@ -58,7 +58,7 @@ export const RegisterForm = ({ userToEdit, setUserToEdit }) => {
       if (error?.error) {
         setErrors(error.error);
       } else {
-        setErrors({ general: error.msg || "Error al registrarse" });
+        setErrors({ general: error.msg || "Error al registrar nuevo usuario" });
       }
     }
   };
@@ -167,7 +167,7 @@ export const RegisterForm = ({ userToEdit, setUserToEdit }) => {
 
         {/* Botón principal */}
         <button type="submit" className="btn btn-dark w-100 mt-2 mb-2">
-          {userToEdit ? "Actualizar usuario" : "Registrarse"}
+          {userToEdit ? "Actualizar usuario" : "Registrar usuario"}
         </button>
 
         {/* Error general */}

@@ -15,11 +15,11 @@ export const AdminDashboardPage = () => {
         subtitle=""
       />
       <div className="d-flex flex-wrap justify-content-center mb-5 pb-5 gap-3 mx-5">
-        {/* <button type="button" className="btn btn-dark btn-lg me-2 rounded-1" onClick={() => navigate("/worker/dashboard")}>Ruta del día</button> */}
-        <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("planner")}>Gestionar visitas (plan) </button>
+        <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-routes")}>Gestionar rutas </button>
         <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-workers")}>Gestionar operarios</button>
+        <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-services")}>Gestionar servicios</button>
         <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-clients")}>Gestionar clientes</button>
-        <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-clients")}>Gestionar usuarios de la web</button>
+        <button type="button" className="btn btn-dark btn-lg rounded-1" onClick={() => navigate("manage-users")}>Gestionar usuarios de la web</button>
       </div>
 
       <ReportsList title="Listado de informes"/>

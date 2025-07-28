@@ -224,18 +224,15 @@ export const InstallationMap = ({ visit }) => {
 
     return (
         <div>
-            <h3>{installation.nombre}</h3>
+            <h3 className="fw-bold fs-4 mt-5">{installation.nombre}</h3>
 
             <div>
-                <p><strong>Select a point group:</strong></p>
+                <p><strong>Selecciona un grupo de puntos de control</strong></p>
                 {controlPointGroups.map(group => (
                     <button
+                        className="btn btn-outline-dark me-2"
                         key={group.id_grupo_punto_control}
                         onClick={() => setSelectedGroup(group)}
-                        style={{
-                            margin: '0 4px',
-                            backgroundColor: selectedGroup?.id_grupo_punto_control === group.id_grupo_punto_control ? '#ddd' : '#fff',
-                        }}
                     >
                         {group.nombre}
                     </button>
@@ -243,8 +240,8 @@ export const InstallationMap = ({ visit }) => {
             </div>
 
             <div style={{ margin: '10px 0' }}>
-                <button onClick={handleSavePoints}>
-                    Save points
+                <button className="btn btn-dark me-2" onClick={handleSavePoints}>
+                    Guardar puntos de control
                 </button>
             </div>
 
@@ -291,13 +288,13 @@ export const InstallationMap = ({ visit }) => {
                 </div>
             )}
 
-            <h4 style={{ marginTop: '30px' }}>Control Points and Their Latest State</h4>
-            <table border="1" cellPadding="6" style={{ marginTop: 10, width: '100%', borderCollapse: 'collapse' }}>
+            <h4 className="fw-bold fs-5 mt-5 mb-3">Puntos de control y su estado:</h4>
+            <table className="table table-bordered table-hover align-middle text-center">
                 <thead>
                     <tr>
-                        <th>Point ID</th>
-                        <th>Group</th>
-                        <th>Coordinates (x, y)</th>
+                        <th>Id de punto de control</th>
+                        <th>Grupo</th>
+                        <th>Coordenadas (x, y)</th>
                         <th>Estado</th>
                     </tr>
                 </thead>

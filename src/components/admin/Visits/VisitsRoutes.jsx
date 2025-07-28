@@ -22,7 +22,7 @@ export const VisitsRoutes = ({ visits, routes, setVisits, setRoutes }) => {
 
   return (
     <section className="px-5">
-      <h3 className="fw-bold pb-3 mb-0 pb-0">Rutas</h3>
+      <h3 className="fw-bold pb-3 mb-0 pb-0 fs-2">Rutas</h3>
       <div className="d-flex justify-content-center gap-2">
         {/* <button
           type="button"

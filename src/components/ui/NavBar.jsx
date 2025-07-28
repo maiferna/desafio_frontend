@@ -48,7 +48,7 @@ export const NavBar = () => {
                         {user?.role === "tecnico" && (
                             <>
                                 <li><NavLink to="/worker" className="nav-link">Panel de Operario</NavLink></li>
-                                <li><NavLink to="/worker/make-report" className="nav-link">Crear Informe</NavLink></li>
+                                {/* <li><NavLink to="/worker/make-report" className="nav-link">Crear Informe</NavLink></li> */}
                             </>
                         )}
 
@@ -56,12 +56,12 @@ export const NavBar = () => {
                             <>
                                 <li><NavLink to="/admin" className="nav-link">Panel de Administrador</NavLink></li>
                           
-                                {/* <li><NavLink to="/admin/planner" className="nav-link">Planificación</NavLink></li> */}
-                                <li><NavLink to="/admin/manage-visits" className="nav-link">Gestionar Visitas</NavLink></li>
-
+                                {/* <li><NavLink to="/admin/manage-visits" className="nav-link">Gestionar Visitas</NavLink></li> */}
+                                <li><NavLink to="/admin/manage-routes" className="nav-link">Gestionar Rutas</NavLink></li>
                                 <li><NavLink to="/admin/manage-workers" className="nav-link">Gestionar Operarios</NavLink></li>
                                 <li><NavLink to="/admin/manage-clients" className="nav-link">Gestionar Clientes</NavLink></li>
                                 <li><NavLink to="/admin/manage-services" className="nav-link">Gestionar Servicios</NavLink></li>
+                                <li><NavLink to="/admin/manage-users" className="nav-link">Gestionar Usuarios</NavLink></li>
                             </>
                         )}
 

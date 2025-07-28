@@ -28,14 +28,14 @@ export const AdminManageClientDataPage = () => {
   }, []);
 
   return (
-    <main>
+    <main className="mx-4 d-flex flex-column justify-content-center">
       <HeaderHero
-        title={`Gestionar datos`}
-      /* subtitle="Añadir instalación" */
+        title={`Gestionar datos de cliente`}
+        subtitle="Editar cliente y añadir instalaciones"
       />
       <EditClientForm id={id} />
       <button
-        className="btn btn-dark mb-3"
+        className="btn btn-primary mt-5 btn-lg w-auto mx-5"
         onClick={() => setShowForm(prev => !prev)}
       >
         {showForm ? "Ocultar formulario" : "Crear nueva instalación"}

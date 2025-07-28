@@ -20,6 +20,7 @@ import {
 // Protección de rutas
 import { PrivateRoute } from "./PrivateRoute";
 import { AdminManageClientDataPage } from "../pages/admin/AdminManageClientDataPage";
+import { AdminWebUserRegister } from "../pages/admin/AdminWebUserRegister";
 
 export const AppRoutes = () => {
   return (
@@ -54,8 +55,9 @@ export const AppRoutes = () => {
         <Route element={<PrivateRoute allowedRoles={['admin']} />}>
           <Route path='/admin'>
             <Route index element={<AdminDashboardPage />} />
-            <Route path='planner' element={<AdminPlannerPage />} />
-            <Route path='edit-visit' element={<AdminEditVisitPage />} />
+
+            <Route path='manage-routes' element={<AdminPlannerPage />} />
+
             <Route path='manage-workers' element={<AdminManageWorkersPage />} />
             <Route path='manage-clients' element={<AdminManageClientsPage />} />
             <Route path='manage-clients/edit/:id' element={<AdminManageClientDataPage/>}/>
@@ -65,6 +67,7 @@ export const AppRoutes = () => {
             <Route path='manage-visits' element={<AdminManageVisitsPage />} />
             <Route path='manage-visits-create' element={<AdminCreateVisitPage />} />
             <Route path='manage-visits-edit/:id' element={<AdminEditVisitPage />} />
+            <Route path='manage-users' element={<AdminWebUserRegister />} />
           </Route>
         </Route>
 

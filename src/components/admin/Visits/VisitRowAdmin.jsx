@@ -76,42 +76,41 @@ export const VisitRowAdmin = ({
   }, [showAssignForm]);
 
   return (
-    <article className="p-3 px-4 pb-4 d-flex justify-content-between card rounded-1 align-items-start gap-2 mb-2">
+    <article className="p-4 d-flex justify-content-between rounded-1 align-items-start gap-2 mb-2 border">
       <div>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
         {!loading && !error && (
           <>
 
-            <p className="card-text mb-1 fw-bold">
+            <p className="card-text mb-1 fw-bold fs-5 mb-3">
               {`${data[0]?.cliente}: ${data[0]?.direccion_instalacion}`}
             </p>
-            <p className="card-text mb-1">
-              Ruta asignada: {visit.id_ruta ? `#${visit.id_ruta}` : "No asignada"}
-            </p>
             {data.map(row => (
-              <p className="card-text mb-1" key={`row-${row.servicio}`}>{row.servicio}</p>
+              <p className="card-text mb-1" key={`row-${row.servicio}`}><i className="bi bi-shield me-2"></i> {row.servicio}</p>
             ))}
-            <label className="btn btn-sm btn-outline-danger rounded-1" htmlFor="done1">
-              TODO: AQUI DEBERIAMOS DE AÑADIR EL ESTADO
+            
+            <p className="card-text mb-1 mt-4 text-muted">
+              <strong>Ruta asignada:</strong> {visit.id_ruta ? `#${visit.id_ruta}` : "No asignada"}
+            </p>
+            <label className="text-muted" htmlFor="done1">
+              <strong>Estado:</strong> "controlado"
             </label>
           </>
         )}
       </div>
 
-      <div className="d-flex flex-row justify-content-center gap-1">
+      <div className="d-flex flex-column justify-content-center gap-1">
         <input type="checkbox" className="btn-check" id="done1" autoComplete="off" />
 
-        <button type="button" className="btn btn-outline-danger btn-sm rounded-1" onClick={onDeleteVisit}>Eliminar</button>
-        <button type="button" className="btn btn-dark btn-sm rounded-1" onClick={onEditVisit}>Editar</button>
-
+        <button type="button" className="btn btn-dark btn-sm rounded-1" onClick={onEditVisit}>Editar 	<i className="bi bi-pencil-square"></i></button>
         {visit.id_ruta ? (
           <button
             type="button"
-            className="btn btn-outline-warning btn-sm rounded-1"
+            className="btn btn-outline-primary btn-sm rounded-1"
             onClick={handleUnassignRoute}
           >
-            Desasignar
+            Desasignar <i className="bi bi-slash-circle ms-1"></i>
           </button>
         ) : (
           <button
@@ -119,9 +118,12 @@ export const VisitRowAdmin = ({
             className="btn btn-outline-primary btn-sm rounded-1"
             onClick={() => setShowAssignForm(!showAssignForm)}
           >
-            Asignar a ruta
+            Asignar a ruta <i className="bi bi-map ms-1"></i>
           </button>
         )}
+        <button type="button" className="btn btn-outline-danger btn-sm rounded-1" onClick={onDeleteVisit}>Eliminar <i className="bi bi-trash-fill"></i></button>
+        
+        
 
         {showAssignForm && (
           <div className="mt-2">
