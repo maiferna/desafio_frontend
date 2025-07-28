@@ -84,56 +84,69 @@ export const CreateVisit = ({ id }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>{id ? "Editar visita" : "Crear nueva visita"}</h2>
-
-            <label>Instalación:</label>
-            <select
-                onChange={e => setSelectedInstalacion(e.target.value)}
-                value={selectedInstalacion}
-                required
+        <section className="container d-flex flex-column align-items-center justify-content-center mb-5 pb-4 px-4">
+            <form 
+                className="w-100 my-4 p-4 px-4 border rounded-1"
+                onSubmit={handleSubmit}
             >
-                <option value="">Seleccione una instalación</option>
-                {instalaciones.map(inst => (
-                    <option key={inst.id_instalacion} value={inst.id_instalacion}>
-                        {inst.direccion}
-                    </option>
-                ))}
-            </select>
+                <h3 className="fw-bold mb-3">{id ? "Editar visita" : "Crear nueva visita"}</h3>
 
-            <h3>Servicios disponibles</h3>
-            <ul>
-                {servicios.map(s => (
-                    <li key={s.id_servicio}>
-                        {s.nombre}
-                        {!selectedServicios.find(sel => sel.id === s.id_servicio) && (
-                            <button type="button" onClick={() => handleAddServicio(s.id_servicio)}>
-                                Añadir
-                            </button>
-                        )}
-                    </li>
-                ))}
-            </ul>
+                <div className="mb-4 fw-bold d-flex flex-column gap-1">
+                    <label>Instalación: </label>
+                    <select
+                        className="form-select rounded-0"
+                        onChange={e => setSelectedInstalacion(e.target.value)}
+                        value={selectedInstalacion}
+                        required
+                    >
+                        <option value="">Seleccione una instalación</option>
+                        {instalaciones.map(inst => (
+                            <option key={inst.id_instalacion} value={inst.id_instalacion}>
+                                {inst.direccion}
+                            </option>
+                        ))}
+                    </select>
+                </div>
 
-            <h4>Servicios añadidos:</h4>
-            <ul>
-                {selectedServicios.map(({ id, data }) => {
-                    const servicio = servicios.find(s => s.id_servicio === id);
-                    return servicio ? (
-                        <li key={id}>
-                            {servicio.nombre}
-                            <button type="button" onClick={() => handleRemoveServicio(id)}>Eliminar</button>
-                            <ServiceFormRenderer
-                                serviceId={id}
-                                initialValues={data}
-                                onFormChange={(formData) => handleFormChange(id, formData)}
-                            />
-                        </li>
-                    ) : null;
-                })}
-            </ul>
+                <div className="mb-4 d-flex flex-column">
+                    <label className="fw-bold mb-1">Servicios disponibles:</label>
+                    <ul className="list-group">
+                        {servicios.map(s => (
+                            <li className="list-group-item d-flex justify-content-between align-items-center py-2 px-2 ps-3" key={s.id_servicio}>
+                                {s.nombre}
+                                {!selectedServicios.find(sel => sel.id === s.id_servicio) && (
+                                    <button 
+                                        className="btn btn-sm btn-dark rounded-1"
+                                        type="button" onClick={() => handleAddServicio(s.id_servicio)}>
+                                        Añadir
+                                    </button>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
 
-            <button type="submit">{id ? "Guardar cambios" : "Crear visita"}</button>
-        </form>
+                <label className="fw-bold mb-1">Servicios añadidos:</label>
+                <ul>
+                    {selectedServicios.map(({ id, data }) => {
+                        const servicio = servicios.find(s => s.id_servicio === id);
+                        return servicio ? (
+                            <li className="p-3 px-4 card rounded-1" key={id}>
+                                <p className="fw-bold">{servicio.nombre}</p>
+                                
+                                <ServiceFormRenderer
+                                    serviceId={id}
+                                    initialValues={data}
+                                    onFormChange={(formData) => handleFormChange(id, formData)}
+                                />
+                                <button type="button" onClick={() => handleRemoveServicio(id)}>Eliminar</button>
+                            </li>
+                        ) : null;
+                    })}
+                </ul>
+
+                <button className="btn w-100 btn-dark rounded-1" type="submit">{id ? "Guardar cambios" : "Crear visita"} <i class="bi bi-plus"></i></button>
+            </form>
+        </section>
     );
 };
