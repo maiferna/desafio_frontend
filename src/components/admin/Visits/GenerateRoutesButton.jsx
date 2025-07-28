@@ -41,7 +41,7 @@ export const GenerateRoutesButton = ({ visits, setVisits, setRoutes }) => {
                 return {
                     id_instalacion: v.id_instalacion,
                     lat: v.lat,
-                    long: v.long,
+                    lon: v.long,
                     tiempo_llegada: llegada
                 };
             });
@@ -55,7 +55,6 @@ export const GenerateRoutesButton = ({ visits, setVisits, setRoutes }) => {
 
         return { rutas };
     };
-
 
 
     const handleClick = async () => {
@@ -80,8 +79,11 @@ export const GenerateRoutesButton = ({ visits, setVisits, setRoutes }) => {
 
         console.log("Generated Planning JSON:", json);
 
-        const { rutas } = calculateRoutes(json);
-
+        // const { rutas } = calculateRoutes(json);
+        const { rutas } = await fetchCall(`${import.meta.env.VITE_API_URL_BASE}routes/planification`,
+            "POST", {}, json
+        )
+        console.log(rutas);
         for (const ruta of rutas) {
             const createdRoute = await fetchCall(
                 `${import.meta.env.VITE_API_URL_BASE}routes`,
@@ -114,7 +116,7 @@ export const GenerateRoutesButton = ({ visits, setVisits, setRoutes }) => {
             }
         }
 
-        // 🔄 Actualizar estado global con datos frescos del backend
+
         try {
             const updatedVisits = await fetchCall(`${import.meta.env.VITE_API_URL_BASE}visits`);
             const updatedRoutes = await fetchCall(`${import.meta.env.VITE_API_URL_BASE}routes`);
@@ -128,8 +130,9 @@ export const GenerateRoutesButton = ({ visits, setVisits, setRoutes }) => {
     };
 
     return (
-        <button className="btn btn-outline-dark mb-3" onClick={handleClick}>
-            Generar JSON de planificación
+        <button className="btn btn-dark btn-lg mb-3 rounded-1 w-100"
+            onClick={handleClick}>
+            Generar rutas con visitas disponibles
         </button>
     );
 };
