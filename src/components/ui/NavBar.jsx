@@ -20,7 +20,7 @@ export const NavBar = () => {
                 </NavLink>
 
                 {!isLoading && user && (
-                    <span className="navbar-text fw-semibold ms-3">
+                    <span className="navbar-text fw-semibold ms-1">
                         ¡Hola, {user.name}!
                     </span>
                 )}
