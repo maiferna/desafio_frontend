@@ -7,7 +7,6 @@ export const Graphics = () => {
       <h3 className="fw-bold">Estadísticas de la empresa</h3>
       <div>
         <AllGraphic />
-        <img className="img-fluid" src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" />
       </div>
     </section>
   )
