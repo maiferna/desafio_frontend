@@ -1,5 +1,6 @@
 import React from 'react'
 import { fetchCall } from '../../../utils/fetchCall';
+import { elements } from 'chart.js';
 
 export const GenerateRoutesButton = ({ visits, setVisits, setRoutes }) => {
 
@@ -64,16 +65,20 @@ export const GenerateRoutesButton = ({ visits, setVisits, setRoutes }) => {
         }
 
         const unassignedVisits = visits.filter(v => !v.id_ruta);
+        const availableTechnitians = await fetchCall(`${import.meta.env.VITE_API_URL_BASE}users/role/tecnico`)
+        const availableTechnitiansId = availableTechnitians.map(element => element.id_usuario).slice(0, 4);
+
+        const randomTimeOptions = [0.5, 1, 1.5, 2, 3, 4];
 
         const json = {
             mes: "Agosto",
-            tecnicos: [1, 2, 3, 4],
+            tecnicos: availableTechnitiansId,
             localizaciones: unassignedVisits.map(v => ({
                 id_instalacion: v.id_instalacion,
                 localidad: v.localidad,
                 lat: parseFloat(v.lat),
                 long: parseFloat(v.lon),
-                tiempo: parseFloat(v.tiempo || 4),
+                tiempo: parseFloat(v.tiempo ?? randomTimeOptions[Math.floor(Math.random() * randomTimeOptions.length)])
             })),
         };
 
@@ -83,7 +88,7 @@ export const GenerateRoutesButton = ({ visits, setVisits, setRoutes }) => {
         const { rutas } = await fetchCall(`${import.meta.env.VITE_API_URL_BASE}routes/planification`,
             "POST", {}, json
         )
-        console.log(rutas);
+
         for (const ruta of rutas) {
             const createdRoute = await fetchCall(
                 `${import.meta.env.VITE_API_URL_BASE}routes`,
