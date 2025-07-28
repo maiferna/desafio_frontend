@@ -6,6 +6,7 @@ import { ClientProfileCard } from "../../components/client/ClientProfileCard";
 import { useUser } from "../../hooks/useUser";
 import { useEffect, useState } from "react";
 import { fetchCall } from "../../utils/fetchCall";
+import { GraphicClient } from "../../components/client/GraphicClient";
 
 
 
@@ -44,12 +45,13 @@ export const ClientDashboardPage = () => {
     <main className="pt-5 pb-5">
       <HeaderHero
         title="Panel de cliente"
-        subtitle="Gestiona tus servicios"
+        subtitle=""
       />
 
-      <HiredServiceCard />
-      <ServicesList />
+      {/* <HiredServiceCard />
+      <ServicesList /> */}
       <ClientProfileCard client={client}/>
+      <GraphicClient/>
     </main>
   )
 }

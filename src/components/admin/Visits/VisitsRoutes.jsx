@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { VisitRouteCard } from './VisitRouteCard';
 import { fetchCall } from '../../../utils/fetchCall';
+import { GenerateRoutesButton } from './GenerateRoutesButton';
 
 export const VisitsRoutes = ({ visits, routes, setVisits, setRoutes }) => {
   const [allUsers, setAllUsers] = useState([]);
@@ -23,12 +24,13 @@ export const VisitsRoutes = ({ visits, routes, setVisits, setRoutes }) => {
     <section className="px-5">
       <h3 className="fw-bold pb-3 mb-0 pb-0 fs-2">Rutas</h3>
       <div className="d-flex justify-content-center gap-2">
-        <button
+        {/* <button
           type="button"
           className="btn btn-dark btn-lg mb-3 rounded-1 w-100"
           onClick={() => navigate("/planner")}>
           Generar rutas con visitas disponibles
-        </button>
+        </button> */}
+        <GenerateRoutesButton visits={visits} setVisits={setVisits} setRoutes={setRoutes} />
       </div>
       {routes.map(route => {
         const visitasAsignadas = visits.filter(v => v.id_ruta === route.id_ruta);

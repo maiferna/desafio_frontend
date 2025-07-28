@@ -85,7 +85,7 @@ export const CreateVisit = ({ id }) => {
 
     return (
         <section className="container d-flex flex-column align-items-center justify-content-center mb-5 pb-4 px-4">
-            <form 
+            <form
                 className="w-100 my-4 p-4 px-4 border rounded-1"
                 onSubmit={handleSubmit}
             >
@@ -115,7 +115,7 @@ export const CreateVisit = ({ id }) => {
                             <li className="list-group-item d-flex justify-content-between align-items-center py-2 px-2 ps-3" key={s.id_servicio}>
                                 {s.nombre}
                                 {!selectedServicios.find(sel => sel.id === s.id_servicio) && (
-                                    <button 
+                                    <button
                                         className="btn btn-sm btn-dark rounded-1"
                                         type="button" onClick={() => handleAddServicio(s.id_servicio)}>
                                         Añadir
@@ -133,7 +133,7 @@ export const CreateVisit = ({ id }) => {
                         return servicio ? (
                             <li className="p-3 px-4 card rounded-1" key={id}>
                                 <p className="fw-bold">{servicio.nombre}</p>
-                                
+
                                 <ServiceFormRenderer
                                     serviceId={id}
                                     initialValues={data}
@@ -145,7 +145,7 @@ export const CreateVisit = ({ id }) => {
                     })}
                 </ul>
 
-                <button className="btn w-100 btn-dark rounded-1" type="submit">{id ? "Guardar cambios" : "Crear visita"} <i class="bi bi-plus"></i></button>
+                <button className="btn w-100 btn-dark rounded-1" type="submit">{id ? "Guardar cambios" : "Crear visita"} <i className="bi bi-plus"></i></button>
             </form>
         </section>
     );

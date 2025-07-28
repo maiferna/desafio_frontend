@@ -14,7 +14,7 @@ export const AdminManageVisitsPage = () => {
 
             <div className="d-flex justify-content-center">
                 <button className="btn btn-dark btn-lg me-2 mb-5 rounded-1" onClick={() => navigate('/admin/manage-visits-create')}>
-                    Nueva visita <i class="bi bi-house-door"></i> 
+                    Nueva visita <i className="bi bi-house-door"></i>
                 </button>
             </div>
 

@@ -6,7 +6,7 @@
 
 .btn-dark:hover {
   background-color: #02756f !important;
-  border-color: #00615c!important;
+  border-color: #00615c !important;
 }
 
 
@@ -68,15 +68,11 @@
 }
 
 
-
-
-
-
- /* Botón flotante del chat */
+/* Botón flotante del chat */
 .chat-toggle-btn {
   position: fixed;
-  bottom: 70px;
-  right: 20px;
+  bottom: 50px;
+  right: 30px;
   width: 60px;
   height: 60px;
   z-index: 1000;
@@ -96,7 +92,7 @@
 /* Ventana flotante del chat */
 .chat-float-window {
   position: fixed;
-  bottom: 130px;
+  bottom: 150px;
   right: 20px;
   width: 350px;
   z-index: 1000;
@@ -116,12 +112,14 @@
 }
 
 .chat-bubble.user {
-  background-color: #212529; /* Bootstrap dark */
+  background-color: #212529;
+  /* Bootstrap dark */
   color: white;
 }
 
 .chat-bubble.bot {
-  background-color: #f8f9fa; /* Bootstrap light */
+  background-color: #f8f9fa;
+  /* Bootstrap light */
   color: #212529;
 }
 

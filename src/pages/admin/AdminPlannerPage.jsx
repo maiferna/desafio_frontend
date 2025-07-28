@@ -4,7 +4,10 @@ import { VisitsListAdmin } from '../../components/admin/Visits/VisitsListAdmin'
 import { VisitsRoutes } from '../../components/admin/Visits/VisitsRoutes'
 import { CreateRouteForm } from '../../components/admin/Routes/CreateRouteForm'
 import { fetchCall } from '../../utils/fetchCall'
+
 import { useNavigate } from 'react-router'
+import { GenerateRoutesButton } from '../../components/admin/Visits/GenerateRoutesButton'
+
 
 
 export const AdminPlannerPage = () => {

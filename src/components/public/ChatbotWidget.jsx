@@ -42,13 +42,16 @@ export const ChatbotWidget = () => {
                 localStorage.setItem("conversation_id", data.conversation_id);
             }
 
-            if (data.response) {
-                console.log(data.response, typeof (data.response))
+            let responseText = "";
+            if (data && typeof data.response === "string") {
+                responseText = data.response.split("{")[0].trim(); // cortar antes del JSON embebido
+            }
+            if (responseText) {
                 setMessages((prev) => [
                     ...prev,
                     {
                         role: "assistant",
-                        content: data.response
+                        content: responseText
                     }
                 ]);
             }
