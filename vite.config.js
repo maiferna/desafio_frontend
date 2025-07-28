@@ -5,4 +5,13 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: './', // necesario para Render
   plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://api-graficas-uzio.onrender.com',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 })
