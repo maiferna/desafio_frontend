@@ -6,7 +6,7 @@ export const GraphicRoedorInterior = () => {
         datasets: [
             {
                 data: [14, 15, 6], // <-- Datos desde el JSON
-                backgroundColor: ['#00ff00', '#ff0000', '#ffff00'],
+                backgroundColor: ['#02756f', '#ff5100', '#68b0bd'],
                 borderColor: ['#fff'],
                 borderWidth: 2
             }

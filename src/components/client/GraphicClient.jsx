@@ -52,20 +52,21 @@ import { GraphicInsectocaptores } from './Graphic/GraphicInsectocaptores';
 
 export const GraphicClient = () => {
     return (
-        <div>
-            <div>
-                <GraphicRoedorInterior />
+        <section className="container">
+            <div className="row">
+                <div className="col-12 col-md-6 mb-5">
+                    <GraphicRoedorInterior />
+                </div>
+                <div className="col-12 col-md-6 mb-5">
+                    <GraphicRoedorExterior />
+                </div>
+                <div className="col-12 col-md-6 mb-5">
+                    <GraphicInsectosArrastrantes datos={puntosVerificacion} />
+                </div>
+                <div className="col-12 col-md-6 mb-5">
+                    <GraphicInsectocaptores datos={puntosInsectocaptores} />
+                </div>
             </div>
-            <div>
-                <GraphicRoedorExterior />
-            </div>
-            <div>
-                <GraphicInsectosArrastrantes datos={puntosVerificacion} />
-            </div>
-            <div>
-                <GraphicInsectocaptores datos={puntosInsectocaptores} />
-            </div>
-        </div>
-
+        </section>
     )
 }
