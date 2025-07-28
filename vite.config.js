@@ -9,6 +9,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: 'https://api-graficas-uzio.onrender.com',
+        // `${import.meta.env.VITE_GRAPHIC_API_URL_BASE}`,
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, ''),
       },
