@@ -6,7 +6,7 @@ export const GraphicService = () => {
     const [dataRaw, setDataRaw] = useState([]);
 
     useEffect(() => {
-        fetch('/api/servicios_ejecutados')
+        fetch(`/api/servicios_ejecutados`)
             .then(res => res.json())
             .then(setDataRaw)
             .catch(console.error);
