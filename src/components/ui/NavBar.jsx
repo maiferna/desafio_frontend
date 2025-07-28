@@ -19,11 +19,11 @@ export const NavBar = () => {
                     />
                 </NavLink>
 
-                {!isLoading && user && (
+                {/* {!isLoading && user && (
                     <span className="navbar-text fw-semibold ms-1">
                         ¡Hola, {user.name}!
                     </span>
-                )}
+                )} */}
 
                 <button className="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -48,7 +48,7 @@ export const NavBar = () => {
                         {user?.role === "tecnico" && (
                             <>
                                 <li><NavLink to="/worker" className="nav-link">Panel de Operario</NavLink></li>
-                                <li><NavLink to="/worker/make-report" className="nav-link">Crear Informe</NavLink></li>
+                                {/* <li><NavLink to="/worker/make-report" className="nav-link">Crear Informe</NavLink></li> */}
                             </>
                         )}
 

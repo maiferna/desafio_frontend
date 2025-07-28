@@ -54,28 +54,32 @@ export const CreateReportForm = ({ id }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Rellenar visita</h2>
-      {visitData && (
-        <p><strong>Instalación:</strong> {visitData.instalacion?.direccion}</p>
-      )}
-      {selectedServicios.map(({ id_servicio, executionId, data }) => (
-        <div key={executionId}>
-          <h4>Servicio #{id}</h4>
-          <ServiceFormRenderer
-            serviceId={id_servicio}
-            initialValues={data}
-            onFormChange={(formData) => handleFormChange(id_servicio, formData)}
+    <section className="container d-flex flex-column align-items-center justify-content-center mb-5 pb-4 px-4">
+      <form 
+        className="w-100 my-4 p-4 px-4 border rounded-1"
+        onSubmit={handleSubmit}
+      >
+        <h3 className="fw-bold mb-2 fs-1">Informe de visita</h3>
+        {visitData && (
+          <p className="fs-4 mb-4"><strong>Instalación:</strong> {visitData.instalacion?.direccion}</p>
+        )}
+        {selectedServicios.map(({ id_servicio, executionId, data }) => (
+          <div key={executionId}>
+            <h4 className="fw-bold mb-2 fs-5">Servicio {id}</h4>
+            <ServiceFormRenderer
+              serviceId={id_servicio}
+              initialValues={data}
+              onFormChange={(formData) => handleFormChange(id_servicio, formData)}
+            />
+          </div>
+        ))}
 
-          />
-        </div>
-      ))}
 
+        <InstallationMap visit={visitData} />
 
-      <InstallationMap visit={visitData} />
-
-      <button type="submit">Guardar datos de ejecución</button>
-    </form>
+        <button className="w-100 btn btn-dark btn-lg mt-4"type="submit">Guardar datos de visita</button>
+      </form>
+    </section>
   );
 }
 

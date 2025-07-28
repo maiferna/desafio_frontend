@@ -14,12 +14,13 @@ import { WorkerCreateReportPage, WorkerDashboardPage, WorkerVisitDetailPage } fr
 import {
   AdminDashboardPage, AdminEditVisitPage, AdminManageClientsPage, AdminManageWorkersPage,
   AdminPlannerPage, AdminManageServicesPage, AdminEditServicePage, AdminNewServicePage,
-  AdminManageVisitsPage, AdminCreateVisitPage, AdminWebUserRegister
+  AdminManageVisitsPage, AdminCreateVisitPage
 } from "../pages/admin";
 
 // Protección de rutas
 import { PrivateRoute } from "./PrivateRoute";
 import { AdminManageClientDataPage } from "../pages/admin/AdminManageClientDataPage";
+import { AdminWebUserRegister } from "../pages/admin/AdminWebUserRegister";
 
 export const AppRoutes = () => {
   return (

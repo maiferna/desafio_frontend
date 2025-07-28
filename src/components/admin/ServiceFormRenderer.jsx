@@ -45,12 +45,12 @@ export const ServiceFormRenderer = ({ serviceId, initialValues, onFormChange }) 
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <article>
-            <h3>Service Form</h3>
+        <article className='mb-4'>
+            {/* <h3>Service Form</h3> */}
 
             {Object.entries(formDefinition).map(([name, type]) => (
-                <div key={name} style={{ marginBottom: '1rem' }}>
-                    <label className="mb-1">{name}</label>
+                <div key={name}>
+                    <label className="mb-1 me-2">{name}</label>
 
                     {type === 'text' && (
                         <input
