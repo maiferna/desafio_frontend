@@ -5,7 +5,7 @@
 
 .btn-dark:hover {
   background-color: #02756f !important;
-  border-color: #00615c!important;
+  border-color: #00615c !important;
 }
 
 
@@ -22,25 +22,25 @@
 }
 
 
-.btn-outline-primary{
+.btn-outline-primary {
   /* background-color: #ff0000 !important; */
   border-color: #68b0bd !important;
-  color: #68b0bd  !important;
+  color: #68b0bd !important;
 }
 
 .btn-outline-primary:hover {
-  background-color: #68b0bd  !important;
-  border-color: #68b0bd  !important;
+  background-color: #68b0bd !important;
+  border-color: #68b0bd !important;
   color: white !important;
 }
 
-.btn-check:checked + .btn-outline-primary {
- background-color: #68b0bd  !important;
-  border-color: #68b0bd  !important;
+.btn-check:checked+.btn-outline-primary {
+  background-color: #68b0bd !important;
+  border-color: #68b0bd !important;
   color: white !important;
- */
+}
 
- /* Botón flotante del chat */
+/* Botón flotante del chat */
 .chat-toggle-btn {
   position: fixed;
   bottom: 70px;
@@ -84,12 +84,14 @@
 }
 
 .chat-bubble.user {
-  background-color: #212529; /* Bootstrap dark */
+  background-color: #212529;
+  /* Bootstrap dark */
   color: white;
 }
 
 .chat-bubble.bot {
-  background-color: #f8f9fa; /* Bootstrap light */
+  background-color: #f8f9fa;
+  /* Bootstrap light */
   color: #212529;
 }
 

@@ -59,12 +59,6 @@ export const AdminPlannerPage = () => {
         )
       }
 
-      <GenerateRoutesButton
-        visits={visits}
-        setVisits={setVisits}
-        setRoutes={setRoutes}
-      />
-
       <VisitsRoutes
         visits={visits}
         setVisits={setVisits}
