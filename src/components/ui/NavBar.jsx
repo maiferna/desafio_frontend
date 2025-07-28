@@ -40,8 +40,6 @@ export const NavBar = () => {
                         {user?.role === "cliente" && (
                             <>
                                 <li><NavLink to="/client" className="nav-link">Panel de Cliente</NavLink></li>
-                                {/* <li><NavLink to="/client/hire-service" className="nav-link">Contratar servicio</NavLink></li>
-                                <li><NavLink to="/client/profile" className="nav-link">Datos de mi empresa</NavLink></li> */}
                             </>
                         )}
 
