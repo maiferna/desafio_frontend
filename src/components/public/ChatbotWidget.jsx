@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import { Chatbot } from './Chatbot';
 
 export const ChatbotWidget = () => {
-  // Para comprobar si el chat está abierto o no
+    // Para comprobar si el chat está abierto o no
     const [isOpen, setIsOpen] = useState(false);
     const [socket, setSocket] = useState(null);
     const [messages, setMessages] = useState([{
@@ -40,13 +40,16 @@ export const ChatbotWidget = () => {
                 localStorage.setItem("conversation_id", data.conversation_id);
             }
 
-            if (data.response) {
-                console.log(data.response, typeof (data.response))
+            let responseText = "";
+            if (data && typeof data.response === "string") {
+                responseText = data.response.split("{")[0].trim(); // cortar antes del JSON embebido
+            }
+            if (responseText) {
                 setMessages((prev) => [
                     ...prev,
                     {
                         role: "assistant",
-                        content: data.response
+                        content: responseText
                     }
                 ]);
             }
